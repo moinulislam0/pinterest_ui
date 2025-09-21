@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinterest_ui/Mobile%20Ui/design1.dart';
 import 'package:pinterest_ui/Mobile%20Ui/design2.dart';
+import 'package:pinterest_ui/Mobile%20Ui/design3.dart';
 
 class Pages extends StatelessWidget {
   const Pages({super.key});
@@ -29,6 +30,15 @@ class Pages extends StatelessWidget {
                 );
               },
               child: Text("Mobile ui Design2"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Design3()),
+                );
+              },
+              child: Text("Mobile ui Design3"),
             ),
           ],
         ),

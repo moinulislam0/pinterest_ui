@@ -134,7 +134,7 @@ class AttendanceSection extends StatelessWidget {
           'Absen kehadiran hari ini',
           style: TextStyle(fontSize: 14, color: AppColors.secondaryText),
         ),
-        const SizedBox(height: 18),
+        const SizedBox(height: 13),
         Row(
           children: [
             Expanded(
@@ -389,14 +389,16 @@ class HomeworkCard extends StatelessWidget {
           Row(
             children: [
               Container(
+                height: 40,
+                width: 40,
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: bgColor,
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: Icon(icon, size: 40, color: iconColor),
+                child: Icon(icon, size: 25, color: iconColor),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: 18),
               Text(
                 subject,
                 style: const TextStyle(

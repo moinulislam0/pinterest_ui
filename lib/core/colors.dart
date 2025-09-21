@@ -27,4 +27,17 @@ class AppColors {
   static const Color biologiBg = Color(0xFFE3F2FD);
   static const Color olahragaBg = Color(0xFFE8F5E9);
   static const Color agamaBg = Color(0xFFF9FBE7);
+
+  static const Color accentColor = Color(0xFF6A5AE0);
+  static const Color calendarDayText = Color(0xFFB0B0B0);
+  static const Color calendarInactiveDate = Color(0xFFC4C4C4);
+  static const Color eventBlue = Color(0xFF6A5AE0);
+  static const Color eventGreen = Color(0xFF50D291);
+  static const Color eventYellow = Color(0xFFF3C65A);
+  static const Color homeworkIconBg = Color(0xFFE8E5FF);
+  static const Color homeworkIcon = Color(0xFF6A5AE0);
+  static const Color groupWorkIconBg = Color(0xFFE6F8F0);
+  static const Color groupWorkIcon = Color(0xFF50D291);
+  static const Color bottomNavActiveBg = Color(0xFFE8E5FF);
+  static const Color bottomNavInactiveIcon = Color(0xFF9E9E9E);
 }

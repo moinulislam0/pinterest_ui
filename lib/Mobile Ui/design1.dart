@@ -201,7 +201,7 @@ class CustomBottomNavBarState extends State<CustomBottomNavBar> {
   static const List<Map<String, dynamic>> _navBarItems = [
     {'icon': AppIcons.homeIconss, 'label': 'Home'},
     {'icon': AppIcons.homeIconss, 'label': 'Tugas'},
-    {'icon': AppIcons.homeIconss, 'label': 'Email'},
+    {'icon': AppIcons.homeIconss, 'label': 'Jadwal'},
     {'icon': AppIcons.homeIconss, 'label': 'Profile'},
   ];
 
