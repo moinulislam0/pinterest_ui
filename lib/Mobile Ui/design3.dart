@@ -9,13 +9,24 @@ class Design3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white, // AppBar এর ব্যাকগ্রাউন্ড রঙ
+        centerTitle: true,
+        title: const Text(
+          "Agenda Bulanan",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+
+        elevation: 0,
+        scrolledUnderElevation: 0,
+      ),
       backgroundColor: const Color.fromARGB(255, 253, 250, 250),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
           children: [
-            const Header(),
-            const SizedBox(height: 30),
+            //const Header(),
+            const SizedBox(height: 10),
             const MonthSelector(),
             const SizedBox(height: 20),
             const CalendarView(),
@@ -46,6 +57,16 @@ class Design3 extends StatelessWidget {
               count: 3,
               countColor: AppColors.eventYellow,
             ),
+            const SizedBox(height: 16),
+            const AgendaItem(
+              icon: Icons.assignment_outlined,
+              iconBgColor: AppColors.homeworkIconBg,
+              iconColor: AppColors.eventYellow,
+              title: 'Pekerjaan Rumah',
+              count: 3,
+              countColor: AppColors.eventYellow,
+            ),
+            SizedBox(height: 70),
           ],
         ),
       ),

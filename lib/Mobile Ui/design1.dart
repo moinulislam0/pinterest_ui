@@ -61,6 +61,7 @@ class Design1 extends StatelessWidget {
                         'Definisikan zat yang terkandung dalam\nbesi, buat di google docs',
                     dueDate: 'Dikumpulkan pukul 10:00',
                   ),
+                  SizedBox(height: 70),
                 ],
               ),
             ),
