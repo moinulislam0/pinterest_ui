@@ -59,4 +59,9 @@ class AppColors {
   static const Color navIconActive = Color(0xFF00C853);
   static const Color navIconInactive = Color(0xFFBDBDBD);
   static const Color orange = Color(0xFFe47a12);
+ 
+  static const Color iconColor = Color(0xFF757575);
+  static const Color progressTrack = Color(0xFFE0E0E0);
+  static const Color playGrColor = Color(0xFFf5f6fa);
+  static const Color bg = Color(0xFFfdfdfd);
 }
