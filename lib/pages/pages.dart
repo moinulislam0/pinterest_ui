@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pinterest_ui/App%20Project/design1.dart';
+import 'package:pinterest_ui/App%20Project/design2.dart';
 import 'package:pinterest_ui/Mobile%20Ui/design1.dart';
 import 'package:pinterest_ui/Mobile%20Ui/design2.dart';
 import 'package:pinterest_ui/Mobile%20Ui/design3.dart';
@@ -39,6 +41,24 @@ class Pages extends StatelessWidget {
                 );
               },
               child: Text("Mobile ui Design3"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AppProjectDesign1()),
+                );
+              },
+              child: Text("AppProject Design1"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AppProjectDesign2()),
+                );
+              },
+              child: Text("AppProject Design2"),
             ),
           ],
         ),

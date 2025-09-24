@@ -5,7 +5,7 @@ class AppColors {
   static const Color background = Color(0xFFF3F4FB);
   static const Color cardBackground = Color(0xFFFFFFFF);
   static const Color primaryText = Color(0xFF333333);
-  static const Color secondaryText = Color(0xFF888888);
+  static const Color secondaryText = Color(0xFF000000);
   static const Color buttonBackground = Color(0xFF6A67CE);
   static const Color buttonText = Color(0xFFFFFFFF);
   static const Color mtkIconBackground = Color(0xFFFCEEEE);
@@ -40,4 +40,15 @@ class AppColors {
   static const Color groupWorkIcon = Color(0xFF50D291);
   static const Color bottomNavActiveBg = Color(0xFFE8E5FF);
   static const Color bottomNavInactiveIcon = Color(0xFF9E9E9E);
+  static const Color primaryColor = Color(0xFF128b67);
+  static const Color textColor = Color(0xFF333333);
+  static const Color subtextColor = Color(0xFF828282);
+  static const Color inactiveDotColor = Color(0xFFE0E0E0);
+  static const Color primaryGreen = Color(0xFF27AE60);
+  static const Color darkGreen = Color(0xFF219653);
+  static const Color primaryText1 = Color(0xFF333333);
+  static const Color secondaryText1 = Color(0xFF828282);
+  static const Color accentOrange = Color(0xFFF2994A);
+  static const Color searchBarBg = Color(0xFFF2F2F2);
+  static const Color logoBg = Color(0xFFf3f3f5);
 }
