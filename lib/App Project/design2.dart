@@ -23,6 +23,8 @@ class _HomeScreenState extends State<AppProjectDesign2> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 247, 244, 244),
       appBar: AppBar(
+        toolbarHeight: 80,
+        automaticallyImplyLeading: false,
         scrolledUnderElevation: 0,
 
         title: Row(
@@ -34,7 +36,7 @@ class _HomeScreenState extends State<AppProjectDesign2> {
                   width: 50.0, // একটি নির্দিষ্ট चौड़ाई দিন
                   height: 50.0,
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle,
+                    borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
                       image: AssetImage(AppsImages.appLogo),
                       fit: BoxFit.cover,
@@ -52,6 +54,7 @@ class _HomeScreenState extends State<AppProjectDesign2> {
                         fontSize: 14,
                       ),
                     ),
+                    SizedBox(height: 8),
                     Text(
                       'Jakob',
                       style: TextStyle(
@@ -134,7 +137,7 @@ class _HomeScreenState extends State<AppProjectDesign2> {
             const SizedBox(height: 30),
 
             Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16),
+              padding: const EdgeInsets.only(left: 22),
               child: const QuickActions(),
             ),
             const SizedBox(height: 40),
@@ -149,7 +152,8 @@ class _HomeScreenState extends State<AppProjectDesign2> {
                 title: 'Tools You may need',
                 subtitle: 'All categories of tools Are Here',
                 onSeeAll: () {},
-                color: Colors.green,
+                color: AppColors.primaryGreen,
+                colors1: AppColors.primaryGreen,
               ),
             ),
             SizedBox(height: 150),
@@ -157,7 +161,7 @@ class _HomeScreenState extends State<AppProjectDesign2> {
         ),
       ),
 
-      bottomNavigationBar: CustomBottomNavBar(
+      bottomNavigationBar: CustomBottomNavBarDesign2(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,
       ),
@@ -174,7 +178,7 @@ class CustomSearchBar extends StatelessWidget {
       decoration: InputDecoration(
         hintText: 'Search for tools',
         hintStyle: TextStyle(color: AppColors.secondaryText),
-   
+
         suffixIcon: Icon(Icons.search, color: AppColors.secondaryText),
         filled: true,
         fillColor: const Color.fromARGB(255, 226, 226, 228),
@@ -198,7 +202,7 @@ class PromoBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 210,
+      height: 200,
       padding: const EdgeInsets.only(left: 24, right: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
@@ -250,14 +254,14 @@ class PromoBanner extends StatelessWidget {
               Image.asset(AppsImages.con_mac, width: 180, fit: BoxFit.contain),
             ],
           ),
-          const SizedBox(height: 10),
+
           Row(
             mainAxisAlignment:
                 MainAxisAlignment.center, // ডটগুলোকে মাঝখানে আনার জন্য।
             children: List.generate(5, (index) {
               return Container(
                 margin: const EdgeInsets.only(right: 10),
-                width: index == 1 ? 16 : 6,
+                width: index == 1 ? 6 : 6,
                 height: 6,
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(index == 1 ? 1 : 0.5),
@@ -266,6 +270,7 @@ class PromoBanner extends StatelessWidget {
               );
             }),
           ),
+          SizedBox(height: 10),
         ],
       ),
     );
@@ -277,30 +282,48 @@ class QuickActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        QuickActionItem(
-          iconData: Icons.article_outlined,
-          label: 'Newsfeed',
-          color: Color(0xFFF2994A),
-        ),
-        QuickActionItem(
-          iconData: Icons.dashboard_customize_outlined,
-          label: 'Dashboard',
-          color: Color(0xFFEB5757),
-        ),
-        QuickActionItem(
-          iconData: Icons.construction, // একটি উপযুক্ত আইকন
-          label: 'My Tools',
-          color: AppColors.primaryGreen,
-        ),
-        QuickActionItem(
-          iconData: Icons.monetization_on_outlined,
-          label: 'Earnings',
-          color: Color(0xFF2F80ED),
-        ),
-      ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: const Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          QuickActionItem(
+            iconData: Icons.article_outlined,
+            label: 'Newsfeed',
+            color: Color(0xFFF2994A),
+          ),
+          SizedBox(width: 30),
+          QuickActionItem(
+            iconData: Icons.dashboard_customize_outlined,
+            label: 'Dashboard',
+            color: Color(0xFFEB5757),
+          ),
+          SizedBox(width: 30),
+          QuickActionItem(
+            iconData: Icons.construction, // একটি উপযুক্ত আইকন
+            label: 'My Tools',
+            color: AppColors.primaryGreen,
+          ),
+          SizedBox(width: 30),
+          QuickActionItem(
+            iconData: Icons.dashboard_customize_outlined,
+            label: 'Dashboard',
+            color: Color(0xFFEB5757),
+          ),
+          SizedBox(width: 30),
+          QuickActionItem(
+            iconData: Icons.construction, // একটি উপযুক্ত আইকন
+            label: 'My Tools',
+            color: AppColors.primaryGreen,
+          ),
+          SizedBox(width: 30),
+          QuickActionItem(
+            iconData: Icons.monetization_on_outlined,
+            label: 'Earnings',
+            color: Color(0xFF2F80ED),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -330,7 +353,7 @@ class QuickActionItem extends StatelessWidget {
           ),
           child: Icon(iconData, color: color, size: 28),
         ),
-        const SizedBox(height: 18),
+        const SizedBox(height: 13),
         Text(label, style: TextStyle(color: AppColors.secondaryText)),
       ],
     );
@@ -349,13 +372,14 @@ class CategoriesSection extends StatelessWidget {
           title: 'Categories',
           subtitle: 'All categories of tools',
           onSeeAll: () {},
-          color: Colors.orange,
+          color: AppColors.orange,
+          colors1: AppColors.orange,
         ),
         const SizedBox(height: 35),
         Padding(
           padding: const EdgeInsets.only(left: 16),
           child: SizedBox(
-            height: 140,
+            height: 130,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: const [
@@ -391,7 +415,7 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 100,
-      height: 130,
+      height: 120,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey.withOpacity(0.2)),
@@ -434,7 +458,8 @@ class ToolsSection extends StatelessWidget {
           title: 'Tools you may need',
           subtitle: '',
           onSeeAll: () {},
-          color: Colors.green,
+          color: AppColors.primaryGreen,
+          colors1: AppColors.primaryGreen,
         ),
 
         const SizedBox(height: 16),
@@ -447,7 +472,7 @@ class SectionHeader extends StatelessWidget {
   final String title;
   final String? subtitle;
   final VoidCallback onSeeAll;
-  final Color color;
+  final Color color, colors1;
 
   const SectionHeader({
     super.key,
@@ -455,6 +480,7 @@ class SectionHeader extends StatelessWidget {
     this.subtitle,
     required this.onSeeAll,
     required this.color,
+    required this.colors1,
   });
 
   @override
@@ -518,22 +544,15 @@ class SectionHeader extends StatelessWidget {
                 ),
               ),
               onPressed: onSeeAll,
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'See all',
-                    style: TextStyle(
-                      color: AppColors.accentOrange,
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: colors1, fontSize: 14),
                   ),
                   SizedBox(width: 4),
-                  Icon(
-                    Icons.chevron_right,
-                    color: AppColors.accentOrange,
-                    size: 20,
-                  ),
+                  Icon(Icons.chevron_right, color: colors1, size: 20),
                 ],
               ),
             ),
@@ -545,11 +564,11 @@ class SectionHeader extends StatelessWidget {
 }
 
 // নতুন StatelessWidget ক্লাস
-class CustomBottomNavBar extends StatelessWidget {
+class CustomBottomNavBarDesign2 extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onItemTapped;
 
-  const CustomBottomNavBar({
+  const CustomBottomNavBarDesign2({
     super.key,
     required this.selectedIndex,
     required this.onItemTapped,
@@ -580,11 +599,11 @@ class CustomBottomNavBar extends StatelessWidget {
               Icon(Icons.home),
               SizedBox(height: 4),
               Container(
-                height: 3,
-                width: 24,
+                height: 5,
+                width: 5,
                 decoration: BoxDecoration(
                   color: AppColors.primaryGreen,
-                  borderRadius: BorderRadius.circular(2),
+                  borderRadius: BorderRadius.circular(30),
                 ),
               ),
             ],

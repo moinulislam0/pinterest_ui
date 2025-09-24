@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pinterest_ui/App%20Project/design2.dart';
 import 'package:pinterest_ui/Mobile%20Ui/design1.dart';
-
-// ছবি থেকে নেওয়া কালার কোড
-class AppColors {
-  static const Color backgroundTop = Color(0xFFF5F5F5);
-  static const Color backgroundBottom = Color(0xFFEBEBEB);
-  static const Color cardColor = Color(0xFFFFFFFF);
-  static const Color shadowColor = Color(0xFFD8D8D8);
-  static const Color textColor = Color(0xFF424242);
-  static const Color navIconActive = Color(0xFF00C853);
-  static const Color navIconInactive = Color(0xFFBDBDBD);
-}
+import 'package:pinterest_ui/core/colors.dart';
+import 'package:pinterest_ui/core/images.dart';
 
 // ক্যাটেগরি ডেটা মডেল
 class Category {
@@ -22,33 +14,79 @@ class Category {
 }
 
 final List<Category> categories = [
-  const Category(name: 'Plumber', imagePath: 'assets/images/plumber.png'),
-  const Category(name: 'Carpenter', imagePath: 'assets/images/carpenter.png'),
-  const Category(name: 'Welder', imagePath: 'assets/images/welder.png'),
-  const Category(name: 'Contactor', imagePath: 'assets/images/contactor.png'),
-  const Category(
-    name: 'Electrician',
-    imagePath: 'assets/images/electrician.png',
-  ),
-  const Category(name: 'Painter', imagePath: 'assets/images/painter.png'),
-  const Category(name: 'Laundry', imagePath: 'assets/images/laundry.png'),
-  const Category(name: 'Mechanic', imagePath: 'assets/images/mechanic.png'),
-  const Category(name: 'Cleaner', imagePath: 'assets/images/cleaner.png'),
-  const Category(name: 'Carpenter', imagePath: 'assets/images/carpenter_2.png'),
-  const Category(
-    name: 'Electrician',
-    imagePath: 'assets/images/electrician_2.png',
-  ),
-  const Category(name: 'Contactor', imagePath: 'assets/images/contactor_2.png'),
+  const Category(name: 'Plumber', imagePath: AppsImages.plumber),
+  const Category(name: 'Carpenter', imagePath: AppsImages.plumber),
+  const Category(name: 'Welder', imagePath: AppsImages.plumber),
+  const Category(name: 'Contactor', imagePath: AppsImages.plumber),
+  const Category(name: 'Electrician', imagePath: AppsImages.plumber),
+  const Category(name: 'Painter', imagePath: AppsImages.plumber),
+  const Category(name: 'Laundry', imagePath: AppsImages.plumber),
+  const Category(name: 'Mechanic', imagePath: AppsImages.plumber),
+  const Category(name: 'Cleaner', imagePath: AppsImages.plumber),
+  const Category(name: 'Carpenter', imagePath: AppsImages.plumber),
+  const Category(name: 'Electrician', imagePath: AppsImages.plumber),
+  const Category(name: 'Contactor', imagePath: AppsImages.plumber),
 ];
 
-// মূল ক্যাটেগরি স্ক্রিন উইজেট
-class AppProjectDesign3 extends StatelessWidget {
+class AppProjectDesign3 extends StatefulWidget {
   const AppProjectDesign3({super.key});
+
+  @override
+  State<AppProjectDesign3> createState() => _AppProjectDesign3State();
+}
+
+class _AppProjectDesign3State extends State<AppProjectDesign3> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                color: AppColors.backgroundTop,
+                borderRadius: BorderRadius.circular(12),
+              ),
+
+              child: InkWell(
+                borderRadius: BorderRadius.circular(12),
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 6.0),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      size: 18,
+                      color: Colors.grey[800],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        toolbarHeight: 80,
+        backgroundColor: Colors.white,
+        scrolledUnderElevation: 0,
+        title: Text(
+          "Categories",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+        ),
+        centerTitle: true,
+      ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -58,27 +96,33 @@ class AppProjectDesign3 extends StatelessWidget {
           ),
         ),
         child: SafeArea(
-          
           bottom: false,
           child: GridView.builder(
-            padding: const EdgeInsets.all(16.0),
-           
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, 
-              crossAxisSpacing: 16.0, 
-              mainAxisSpacing: 16.0, 
-              childAspectRatio: 0.85, // আইটেমের উচ্চতা ও প্রস্থের অনুপাত
+            padding: const EdgeInsets.only(
+              top: 40,
+              left: 24,
+              right: 24,
+              bottom: 100,
             ),
-            itemCount: categories.length, // মোট আইটেমের সংখ্যা
+
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: 16.0,
+              mainAxisSpacing: 16.0,
+              childAspectRatio: 0.85,
+            ),
+            itemCount: categories.length,
             itemBuilder: (context, index) {
-              // প্রতিটি আইটেমের জন্য CategoryCard উইজেট কল করা হয়েছে
               return CategoryCard(category: categories[index]);
             },
           ),
         ),
       ),
-      // কাস্টম বটম নেভিগেশন বার
-      bottomNavigationBar: const CustomBottomNavBar(),
+
+      bottomNavigationBar: CustomBottomNavBarDesign2(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
+      ),
     );
   }
 }
@@ -92,16 +136,12 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        border: Border.all(
+          color: const Color.fromARGB(255, 223, 222, 222),
+          width: 2,
+        ),
         color: AppColors.cardColor,
-        borderRadius: BorderRadius.circular(16.0),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.shadowColor.withOpacity(0.6),
-            spreadRadius: 1,
-            blurRadius: 8,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        borderRadius: BorderRadius.circular(20.0),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -109,9 +149,8 @@ class CategoryCard extends StatelessWidget {
           // ক্যাটেগরির ছবি
           Image.asset(
             category.imagePath,
-            height: 50, // ছবির উচ্চতা
+            height: 75,
             errorBuilder: (context, error, stackTrace) {
-              // ছবি লোড না হলে একটি placeholder আইকন দেখানো হবে
               return const Icon(
                 Icons.work,
                 size: 50,
@@ -119,12 +158,12 @@ class CategoryCard extends StatelessWidget {
               );
             },
           ),
-          const SizedBox(height: 12),
-          // ক্যাটেগরির নাম
+          const SizedBox(height: 20),
+
           Text(
             category.name,
             style: const TextStyle(
-              color: AppColors.textColor,
+              color: AppColors.textColor1,
               fontSize: 14,
               fontWeight: FontWeight.w500,
             ),

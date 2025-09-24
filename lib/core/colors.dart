@@ -44,11 +44,19 @@ class AppColors {
   static const Color textColor = Color(0xFF333333);
   static const Color subtextColor = Color(0xFF828282);
   static const Color inactiveDotColor = Color(0xFFE0E0E0);
-  static const Color primaryGreen = Color(0xFF27AE60);
+  static const Color primaryGreen = Color(0xFF05805b);
   static const Color darkGreen = Color(0xFF219653);
   static const Color primaryText1 = Color(0xFF333333);
   static const Color secondaryText1 = Color(0xFF828282);
   static const Color accentOrange = Color(0xFFF2994A);
   static const Color searchBarBg = Color(0xFFF2F2F2);
   static const Color logoBg = Color(0xFFf3f3f5);
+  static const Color backgroundTop = Color(0xFFF5F5F5);
+  static const Color backgroundBottom = Color(0xFFEBEBEB);
+  static const Color cardColor = Color(0xFFFFFFFF);
+  static const Color shadowColor = Color(0xFFD8D8D8);
+  static const Color textColor1 = Color(0xFF000000);
+  static const Color navIconActive = Color(0xFF00C853);
+  static const Color navIconInactive = Color(0xFFBDBDBD);
+  static const Color orange = Color(0xFFe47a12);
 }
