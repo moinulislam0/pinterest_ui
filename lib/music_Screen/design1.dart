@@ -52,26 +52,35 @@ class _AudiobookHomeScreenState extends State<AudiobookHomeScreen> {
                       const SizedBox(height: 30),
                       const SectionHeader(title: "Listened recently"),
                       const SizedBox(height: 16),
-                      const BookListItem(
-                        title: 'Swimmer Among the Stars: Stories',
-                        author: 'Kanishk Tharoor',
-                        progress: 0.7,
-                        img: AppsImages.swm,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 18),
+                        child: const BookListItem(
+                          title: 'Swimmer Among the Stars: Stories',
+                          author: 'Kanishk Tharoor',
+                          progress: 0.7,
+                          img: AppsImages.swm,
+                        ),
                       ),
-                      const BookListItem(
-                        title: 'Detransition, Baby',
-                        author: 'Torrey Peters',
-                        progress: 0.4,
-                        img: AppsImages.swm,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 18),
+                        child: const BookListItem(
+                          title: 'Detransition, Baby',
+                          author: 'Torrey Peters',
+                          progress: 0.4,
+                          img: AppsImages.swm,
+                        ),
                       ),
                       const SizedBox(height: 20),
                       const SectionHeader(title: "Favorites"),
                       const SizedBox(height: 16),
-                      const BookListItem(
-                        title: 'Leave the World Behind',
-                        author: 'Rumaan Alam',
-                        progress: 0.9,
-                        img: AppsImages.swm,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 18),
+                        child: const BookListItem(
+                          title: 'Leave the World Behind',
+                          author: 'Rumaan Alam',
+                          progress: 0.9,
+                          img: AppsImages.swm,
+                        ),
                       ),
                       const SizedBox(
                         height: 100,
@@ -192,8 +201,8 @@ class CurrentlyPlayingCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    width: 60,
-                    height: 68,
+                    width: 70,
+                    height: 72,
                     decoration: BoxDecoration(
                       color: AppColors.playGrColor,
                       borderRadius: BorderRadius.circular(12.0),
@@ -221,9 +230,10 @@ class CurrentlyPlayingCard extends StatelessWidget {
                               Text(
                                 'A Teaspoon of Earth and Sea',
                                 style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w700,
                                   color: AppColors.primaryText,
+                                  fontFamily: 'serif',
                                 ),
                               ),
                               SizedBox(height: 4),
@@ -317,8 +327,8 @@ class BookListItem extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            width: 60,
-            height: 68,
+            width: 70,
+            height: 72,
 
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
@@ -336,9 +346,10 @@ class BookListItem extends StatelessWidget {
                 Text(
                   title,
                   style: const TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
                     color: AppColors.primaryText,
+                    fontFamily: 'serif',
                   ),
                 ),
                 SizedBox(height: 8),

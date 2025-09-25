@@ -85,6 +85,16 @@ flutter:
           weight: 500
         - asset: assets/fonts/Poppins-SemiBold.ttf
           weight: 600
+    - family: serif
+      fonts:
+        - asset: assets/fonts/PTSerif-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/PTSerif-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/PTSerif-Bold.ttf
+          weight: 500
+        - asset: assets/fonts/PTSerif-BoldItalic.ttf
+          weight: 600 
   # fonts:
   #   - family: Schyler
   #     fonts:

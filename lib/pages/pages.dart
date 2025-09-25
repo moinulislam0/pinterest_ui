@@ -5,7 +5,12 @@ import 'package:pinterest_ui/App%20Project/design3.dart';
 import 'package:pinterest_ui/Mobile%20Ui/design1.dart';
 import 'package:pinterest_ui/Mobile%20Ui/design2.dart';
 import 'package:pinterest_ui/Mobile%20Ui/design3.dart';
+import 'package:pinterest_ui/dark_ligh_mode/design1.dart';
+import 'package:pinterest_ui/dark_ligh_mode/design2.dart';
 import 'package:pinterest_ui/music_Screen/design1.dart';
+import 'package:pinterest_ui/music_Screen/design2.dart';
+import 'package:pinterest_ui/music_Screen/design3.dart';
+import 'package:pinterest_ui/products_discover/design1.dart';
 
 class Pages extends StatelessWidget {
   const Pages({super.key});
@@ -75,10 +80,57 @@ class Pages extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AudiobookHomeScreen()),
+                  MaterialPageRoute(
+                    builder: (context) => AudiobookHomeScreen(),
+                  ),
                 );
               },
               child: Text("Audiobook Home Screen"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AudioScreendesign2()),
+                );
+              },
+              child: Text("Audiobook Home Screen 2"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AudioScreendesign3()),
+                );
+              },
+              child: Text("Audiobook Home Screen 3"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DarkModeDesign()),
+                );
+              },
+              child: Text("Dark Mode Design "),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DarkModeDesign2()),
+                );
+              },
+              child: Text("Light Mode Design "),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DiscoveryScreen()),
+                );
+              },
+              child: Text("Products Discover"),
             ),
           ],
         ),
