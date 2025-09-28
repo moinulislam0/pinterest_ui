@@ -5,4 +5,6 @@ class AppsImages {
   static const String plumber = 'assets/images/ele.png';
   static const String swm = 'assets/images/swm.jpg';
   static const String music_bg = 'assets/images/music_bg.webp';
+  static const String cycle = 'assets/images/cycle.png';
+  static const String book = 'assets/images/book.jpg';
 }

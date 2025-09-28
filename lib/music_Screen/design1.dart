@@ -22,10 +22,10 @@ class _AudiobookHomeScreenState extends State<AudiobookHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 83,
+        toolbarHeight: 80,
         backgroundColor: AppColors.bg,
         title: Padding(
-          padding: const EdgeInsets.only(left: 8),
+          padding: const EdgeInsets.only(left: 25, right: 15),
           child: AppBarWidget(key: ValueKey('app_bar_widget')),
         ),
         automaticallyImplyLeading: false,
@@ -44,16 +44,21 @@ class _AudiobookHomeScreenState extends State<AudiobookHomeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 20),
-
-                      const GreetingWidget(),
+                      const SizedBox(height: 5),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: const GreetingWidget(),
+                      ),
                       const SizedBox(height: 24),
                       const CurrentlyPlayingCard(),
-                      const SizedBox(height: 30),
-                      const SectionHeader(title: "Listened recently"),
+                      const SizedBox(height: 25),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: const SectionHeader(title: "Listened recently"),
+                      ),
                       const SizedBox(height: 16),
                       Padding(
-                        padding: const EdgeInsets.only(left: 18),
+                        padding: const EdgeInsets.only(left: 13),
                         child: const BookListItem(
                           title: 'Swimmer Among the Stars: Stories',
                           author: 'Kanishk Tharoor',
@@ -62,7 +67,7 @@ class _AudiobookHomeScreenState extends State<AudiobookHomeScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 18),
+                        padding: const EdgeInsets.only(left: 13),
                         child: const BookListItem(
                           title: 'Detransition, Baby',
                           author: 'Torrey Peters',
@@ -70,11 +75,14 @@ class _AudiobookHomeScreenState extends State<AudiobookHomeScreen> {
                           img: AppsImages.swm,
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      const SectionHeader(title: "Favorites"),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 12),
                       Padding(
-                        padding: const EdgeInsets.only(left: 18),
+                        padding: const EdgeInsets.only(left: 20),
+                        child: const SectionHeader(title: "Favorites"),
+                      ),
+                      const SizedBox(height: 12),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 13),
                         child: const BookListItem(
                           title: 'Leave the World Behind',
                           author: 'Rumaan Alam',
@@ -109,10 +117,11 @@ class AppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          width: 50.0, // একটি নির্দিষ্ট चौड़ाई দিন
-          height: 50.0,
+          width: 40.0,
+          height: 40.0,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             image: DecorationImage(
@@ -125,7 +134,7 @@ class AppBarWidget extends StatelessWidget {
           icon: const Icon(
             Icons.notifications_none_outlined,
             size: 28,
-            color: AppColors.iconColor,
+            color: Colors.black,
           ),
           onPressed: () {},
         ),
@@ -188,17 +197,20 @@ class CurrentlyPlayingCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(cardBorderRadius),
       ),
-      // Stack এর চাইল্ডগুলোকে গোলাকার বর্ডারের ভেতরে রাখার জন্য ClipRRect
       child: ClipRRect(
         borderRadius: BorderRadius.circular(cardBorderRadius),
         child: Stack(
           children: [
-            // Layer 1: মূল কন্টেন্ট এবং ব্যাকগ্রাউন্ড
             Container(
               color: AppColors.playGrColor,
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.only(
+                left: 20,
+                top: 18,
+                bottom: 25,
+                right: 20,
+              ),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
                     width: 70,
@@ -217,8 +229,7 @@ class CurrentlyPlayingCard extends StatelessWidget {
                       size: 30,
                     ),
                   ),
-                  const SizedBox(width: 16),
-
+                  const SizedBox(width: 22),
                   Expanded(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -230,13 +241,13 @@ class CurrentlyPlayingCard extends StatelessWidget {
                               Text(
                                 'A Teaspoon of Earth and Sea',
                                 style: TextStyle(
-                                  fontSize: 17,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.w700,
                                   color: AppColors.primaryText,
                                   fontFamily: 'serif',
                                 ),
                               ),
-                              SizedBox(height: 4),
+                              SizedBox(height: 8),
                               Text(
                                 'by Dina Nayeri',
                                 style: TextStyle(
@@ -268,7 +279,6 @@ class CurrentlyPlayingCard extends StatelessWidget {
                 ],
               ),
             ),
-            // Layer 2: Progress Indicator (Stack এর উপরে বসানো)
             Positioned(
               bottom: 0,
               left: 0,
@@ -323,30 +333,29 @@ class BookListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15.0),
+      padding: const EdgeInsets.only(left: 6, right: 20, top: 15, bottom: 20),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             width: 70,
             height: 72,
-
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
               child: Image.asset(img, fit: BoxFit.cover),
             ),
           ),
-
-          // --- --- --- --- --- ---
           const SizedBox(width: 20),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-
               children: [
                 Text(
+                 
                   title,
-                  style: const TextStyle(
-                    fontSize: 20,
+                  style:  TextStyle(
+                    fontSize: 18,
+                    
                     fontWeight: FontWeight.w700,
                     color: AppColors.primaryText,
                     fontFamily: 'serif',
@@ -365,14 +374,14 @@ class BookListItem extends StatelessWidget {
           ),
           SizedBox(width: 20),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              IconButton(
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-                icon: const Icon(Icons.more_horiz, color: AppColors.iconColor),
-                onPressed: () {},
+              // --- সমাধান: IconButton এর পরিবর্তে GestureDetector ও Icon ব্যবহার করা হয়েছে ---
+              GestureDetector(
+                onTap: () {},
+                child: const Icon(Icons.more_horiz, color: AppColors.iconColor),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 25),
               SizedBox(
                 width: 24,
                 height: 24,
@@ -407,11 +416,9 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
+      padding: const EdgeInsets.only(bottom: 30, left: 40, right: 38),
       child: Container(
-        padding: const EdgeInsets.symmetric(
-          vertical: 8.0,
-        ), // আইকনগুলোর উপরে-নিচে একটু জায়গা দেওয়ার জন্য
+        padding: const EdgeInsets.symmetric(vertical: 15.0),
         decoration: BoxDecoration(
           color: AppColors.cardBackground,
           borderRadius: BorderRadius.circular(24),
@@ -424,7 +431,6 @@ class BottomNavBar extends StatelessWidget {
           ],
         ),
         child: Row(
-          // mainAxisAlignment.spaceAround ব্যবহার করে আইটেমগুলোকে মাঝখানে আনা হয়েছে
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             _buildNavItem(
@@ -449,22 +455,19 @@ class BottomNavBar extends StatelessWidget {
     );
   }
 
-  // প্রতিটি নেভিগেশন আইটেম তৈরি করার জন্য একটি Helper Widget
   Widget _buildNavItem({
     required IconData icon,
     IconData? activeIcon,
     required int index,
   }) {
-    // বর্তমান আইটেমটি নির্বাচিত কিনা তা পরীক্ষা করা হচ্ছে
     final isSelected = selectedIndex == index;
 
     return IconButton(
       onPressed: () => onItemTapped(index),
       icon: Icon(
-        // যদি নির্বাচিত থাকে এবং activeIcon থাকে, তবে সেটি দেখানো হবে, নাহলে সাধারণ আইকন
         isSelected ? (activeIcon ?? icon) : icon,
         color: isSelected ? AppColors.eventBlue : AppColors.iconColor,
-        size: 26, // আইকনের সাইজ
+        size: 26,
       ),
     );
   }

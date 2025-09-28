@@ -11,6 +11,8 @@ import 'package:pinterest_ui/music_Screen/design1.dart';
 import 'package:pinterest_ui/music_Screen/design2.dart';
 import 'package:pinterest_ui/music_Screen/design3.dart';
 import 'package:pinterest_ui/products_discover/design1.dart';
+import 'package:pinterest_ui/products_discover/design2.dart';
+import 'package:pinterest_ui/products_discover/design3.dart';
 
 class Pages extends StatelessWidget {
   const Pages({super.key});
@@ -131,6 +133,24 @@ class Pages extends StatelessWidget {
                 );
               },
               child: Text("Products Discover"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DiscoveryScreen2()),
+                );
+              },
+              child: Text("Products Discover 2"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DiscoveryScreen3()),
+                );
+              },
+              child: Text("Products Discover 3"),
             ),
           ],
         ),

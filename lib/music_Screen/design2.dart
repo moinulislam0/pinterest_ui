@@ -231,7 +231,7 @@ class ContinueButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 18),
           minimumSize: const Size(double.infinity, 56), // সম্পূর্ণ প্রস্থ জুড়ে
           elevation: 5,
-          shadowColor: AppColors.primaryBlue.withOpacity(0.4),
+          shadowColor: AppColors.primaryBlue.withOpacity(0.2),
         ),
         child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,

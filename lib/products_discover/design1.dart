@@ -112,7 +112,6 @@ class _CategoriesSectionState extends State<CategoriesSection> {
           padding: const EdgeInsets.only(left: 20, right: 16),
           child: Wrap(
             spacing: 8.0,
-
             children: [
               CategoryChip(
                 label: 'Romance',
@@ -205,7 +204,7 @@ class CategoryChip extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
         decoration: BoxDecoration(
           color:
               isActive
@@ -214,6 +213,7 @@ class CategoryChip extends StatelessWidget {
           borderRadius: BorderRadius.circular(20.0),
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
@@ -241,15 +241,18 @@ class CategoryChip extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8.0),
-            Text(
-              label,
-              style: TextStyle(
-                color:
-                    isActive
-                        ? AppColors.activeCategoryText
-                        : AppColors.inactiveCategoryText,
-                fontWeight: FontWeight.w700,
-                fontSize: 15,
+            Padding(
+              padding: const EdgeInsets.only(top: 2.0),
+              child: Text(
+                label,
+                style: TextStyle(
+                  color:
+                      isActive
+                          ? AppColors.activeCategoryText
+                          : AppColors.inactiveCategoryText,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
+                ),
               ),
             ),
           ],
@@ -259,7 +262,6 @@ class CategoryChip extends StatelessWidget {
   }
 }
 
-// Reusable widget for the horizontally scrolling book covers.
 class BookCarousel extends StatefulWidget {
   const BookCarousel({Key? key}) : super(key: key);
 
@@ -327,7 +329,6 @@ class _BookCarouselState extends State<BookCarousel> {
 }
 
 class BookCover extends StatelessWidget {
-  // isNumbered প্যারামিটারটি আর প্রয়োজন নেই, তাই সরিয়ে দেওয়া হয়েছে
   final bool isSelected;
   final VoidCallback onTap;
 
@@ -358,8 +359,13 @@ class BookCover extends StatelessWidget {
                             166,
                             166,
                           ).withOpacity(0.25),
-                          blurRadius: 12,
-                          offset: const Offset(0, 4),
+                          // --- সমাধান: শ্যাডো নিচের দিকে বাড়ানোর জন্য এই মানগুলো পরিবর্তন করা হয়েছে ---
+                          blurRadius:
+                              20, // শ্যাডোকে আরও নরম করার জন্য বাড়ানো হয়েছে
+                          offset: const Offset(
+                            0,
+                            10,
+                          ), // শ্যাডোকে নিচের দিকে নামানো হয়েছে
                         ),
                       ]
                       : [],
@@ -368,14 +374,12 @@ class BookCover extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
                 image: const DecorationImage(
-                  image: AssetImage(AppsImages.con_man),
+                  image: AssetImage(AppsImages.book),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
           ),
-
-          // শর্তটি পরিবর্তন করা হয়েছে: শুধু isSelected হলেই ব্যাজ দেখা যাবে
           if (isSelected)
             Positioned(
               top: 8,
@@ -409,7 +413,7 @@ class BookDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 24),
+      padding: const EdgeInsets.only(left: 24, right: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

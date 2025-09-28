@@ -5,6 +5,7 @@ class AppColors {
   static const Color background = Color(0xFFF3F4FB);
   static const Color cardBackground = Color(0xFFFFFFFF);
   static const Color primaryText = Color.fromARGB(255, 31, 30, 30);
+  static const Color primaryText11 = Color.fromARGB(255, 88, 88, 88);
   static const Color secondaryText = Color(0xFF000000);
   static const Color secondaryText2 = Color.fromARGB(255, 130, 131, 131);
 
@@ -33,7 +34,7 @@ class AppColors {
   static const Color accentColor = Color(0xFF6A5AE0);
   static const Color calendarDayText = Color(0xFFB0B0B0);
   static const Color calendarInactiveDate = Color(0xFFC4C4C4);
-  static const Color eventBlue = Color(0xFF6A5AE0);
+  static const Color eventBlue = Color(0xFF5670b1);
   static const Color eventGreen = Color(0xFF50D291);
   static const Color eventYellow = Color(0xFFF3C65A);
   static const Color homeworkIconBg = Color(0xFFE8E5FF);
@@ -62,12 +63,12 @@ class AppColors {
   static const Color navIconInactive = Color(0xFFBDBDBD);
   static const Color orange = Color(0xFFe47a12);
 
-  static const Color iconColor = Color(0xFF757575);
+  static const Color iconColor = Color.fromARGB(255, 146, 146, 146);
   static const Color progressTrack = Color(0xFFE0E0E0);
   static const Color playGrColor = Color(0xFFf5f6fa);
   static const Color bg = Color(0xFFfdfdfd);
   static const Color pageBackground = Color(0xFFFFFFFF);
-  static const Color primaryBlue = Color(0xFF446ce7);
+  static const Color primaryBlue = Color(0xFF1573ff);
 
   static const Color lightText = Color.fromARGB(255, 129, 129, 129);
   static const Color progressBackground = Color(0xFFE0E0E0);
@@ -109,4 +110,5 @@ class AppColors {
   static const Color activeNavIcon = Color(0xFF0D62FF);
   static const Color inactiveNavIcon = Color.fromARGB(255, 46, 45, 45);
   static const Color numberBadgeBackground = Color(0xFF212121);
+  static const Color lightGrey = Color(0xFFF0F0F0); //
 }
