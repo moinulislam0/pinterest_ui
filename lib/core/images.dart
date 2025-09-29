@@ -7,4 +7,17 @@ class AppsImages {
   static const String music_bg = 'assets/images/music_bg.webp';
   static const String cycle = 'assets/images/cycle.png';
   static const String book = 'assets/images/book.jpg';
+  static const String clothes = 'assets/images/clothes.png';
+  static const String show1 = 'assets/images/show1.png';
+  static const String show2 = 'assets/images/show2.png';
+  static const String shoe = 'assets/images/footprints.svg';
+  static const String asso = 'assets/images/glasses.svg';
+  static const String hand = 'assets/images/hand-coins.svg';
+  static const String bag = 'assets/images/handbag.svg';
+  static const String clo = 'assets/images/shirt.svg';
+  static const String watch = 'assets/images/watch.svg';
+  static const String more = 'assets/images/more.svg';
+  
+  
+
 }

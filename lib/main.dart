@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Pinterest Ui',
-      theme: ThemeData(fontFamily: "poppins",),
+      theme: ThemeData(fontFamily: "poppins"),
       home: Pages(),
     );
   }
