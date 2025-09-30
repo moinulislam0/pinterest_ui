@@ -1,4 +1,5 @@
 class AppsImages {
+  // ==== EXISTING IMAGES ====
   static const String appLogo = 'assets/images/manLogo.jpg';
   static const String con_man = 'assets/images/con_man.png';
   static const String con_mac = 'assets/images/con_mac.png';
@@ -17,7 +18,18 @@ class AppsImages {
   static const String clo = 'assets/images/shirt.svg';
   static const String watch = 'assets/images/watch.svg';
   static const String more = 'assets/images/more.svg';
-  
-  
+  static const String handIcon = 'assets/images/hand.svg';
+  static const String doctor = 'assets/images/doctor1.png';
 
+  // ==== HOSPITAL MANAGEMENT IMAGES ====
+  static const String profileImage = 'assets/images/profile.png';
+  static const String doctorImage = 'assets/images/doctor1.png';
+  static const String heartBeat = 'assets/images/heartBeat.png';
+  static const String dcUser = 'assets/images/dcuser.svg';
+  static const String firstAid = 'assets/images/firstAid.svg';
+  static const String list = 'assets/images/list.svg';
+  static const String virus = 'assets/images/virus.svg';
+  
+  static const String blood = 'assets/images/blood.png';
+  static const String weight = 'assets/images/weight.png';
 }

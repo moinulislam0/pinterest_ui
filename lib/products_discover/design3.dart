@@ -3,25 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:pinterest_ui/core/colors.dart';
 import 'package:pinterest_ui/core/images.dart';
 
-// Color constants extracted from the image
-const Color kBackgroundColor = Color(0xFFFFFFFF); // Pure white background
-const Color kAppBarBackgroundColor = Color(
-  0xFFF8F8F8,
-); // Light grey for app/bottom bar
-const Color kPrimaryTextColor = Color(0xFF333333); // Dark grey for main text
-const Color kSecondaryTextColor = Color(
-  0xFF888888,
-); // Lighter grey for secondary text
-const Color kIconColor = Color(
-  0xFF555555,
-); // Color for icons in app and bottom bars
-const Color kProgressIndicatorColor = Color(
-  0xFF007AFF,
-); // Blue for the progress indicator
-const Color kSelectedParagraphColor = Color(
-  0xFFe1e3ef,
-); // Light blue highlight for selected text
-
 // The main screen widget that replicates the reading interface
 class DiscoveryScreen3 extends StatefulWidget {
   const DiscoveryScreen3({super.key});
@@ -43,8 +24,7 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
       // Avoid division by zero if maxScrollExtent is 0
       if (_scrollController.position.maxScrollExtent > 0) {
         setState(() {
-          _scrollProgress =
-              _scrollController.position.pixels /
+          _scrollProgress = _scrollController.position.pixels /
               _scrollController.position.maxScrollExtent;
         });
       }
@@ -60,7 +40,7 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: AppColors.discoverkBackgroundColor,
       appBar: _buildAppBar(context),
       body: _buildChapterContent(),
       bottomNavigationBar: _buildBottomActionBar(),
@@ -73,7 +53,7 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
 
     return AppBar(
       scrolledUnderElevation: 0,
-      backgroundColor: kAppBarBackgroundColor,
+      backgroundColor: AppColors.discoverkAppBarBackgroundColor,
       elevation: 0,
       automaticallyImplyLeading: false,
       titleSpacing: 0,
@@ -88,7 +68,7 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
             height: 50,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: kAppBarBackgroundColor,
+              color: AppColors.discoverkAppBarBackgroundColor,
               border: Border.all(
                 color: const Color.fromARGB(255, 218, 218, 218),
               ),
@@ -98,7 +78,6 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
           onPressed: () {},
         ),
       ),
-
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 35),
@@ -108,25 +87,23 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
               height: 50,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: kAppBarBackgroundColor,
+                color: AppColors.discoverkAppBarBackgroundColor,
                 border: Border.all(
                   color: const Color.fromARGB(255, 218, 218, 218),
                 ),
               ),
               child: Icon(Icons.list),
             ),
-
             onPressed: () {},
           ),
         ),
       ],
-
       title: Text(
         "01 | Minggu pagi Moza",
         style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w600,
-          color: kPrimaryTextColor,
+          color: AppColors.discoverkPrimaryTextColor,
         ),
       ),
       bottom: PreferredSize(
@@ -136,7 +113,7 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
           child: Container(
             height: 2.0,
             width: screenWidth * _scrollProgress,
-            color: kProgressIndicatorColor,
+            color: AppColors.discoverkProgressIndicatorColor,
           ),
         ),
       ),
@@ -153,11 +130,6 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
         '“Ayo, Kak!” teriakku seraya melajukan sepedaku sambil melewati Kak Eghi ';
     const String paragraph41 =
         '“yang sedang menyandarkan tubuhnya di gerbang rumahku. Kak Eghi hanya tertawa sambil menggelengkan kepala. Setelah itu, Kak Eghi berlari kecil mengejarku.';
-    // ... বাকি প্যারাগ্রাফগুলো একই থাকবে ...
-    '“Halo, Beibei,” sapaku pada sepeda biru yang terparkir di sebelah, aku pun segera menaiki sepedaku meninggalkan garasi.';
-    '“Ayo, Kak!” teriakku seraya melajukan sepedaku sambil melewati Kak Eghi ';
-    '“yang sedang menyandarkan tubuhnya di gerbang rumahku. Kak Eghi hanya tertawa sambil menggelengkan kepala. Setelah itu, Kak Eghi berlari kecil mengejarku.';
-    '“Ayo, Kak!” teriakku seraya melajukan sepedaku sambil melewati Kak Eghi ';
     const String paragraph4 =
         '“Moz, Shila apa kabar?” tanya Kak Eghi kepadaku.';
     const String paragraph5 =
@@ -189,26 +161,27 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
                     style: TextStyle(
                       fontSize: 12.5,
                       height: 1.7,
-                      color: kPrimaryTextColor.withOpacity(0.9),
+                      color:
+                          AppColors.discoverkPrimaryTextColor.withOpacity(0.9),
                       fontWeight: FontWeight.w500,
                     ),
                     children: <TextSpan>[
                       TextSpan(
                         text: paragraph3,
                         style: const TextStyle(
-                          backgroundColor: kSelectedParagraphColor,
-                          color: kPrimaryTextColor,
+                          backgroundColor:
+                              AppColors.discoverkSelectedParagraphColor,
+                          color: AppColors.discoverkPrimaryTextColor,
                           fontSize: 14.5,
                         ),
-                        // 🔹 টেক্সটটিকে ক্লিকযোগ্য করার জন্য recognizer যোগ করা হয়েছে
-                        recognizer:
-                            TapGestureRecognizer()
-                              ..onTap = () {
-                                setState(() {
-                                  // এখানে পপ-আপের অবস্থা পরিবর্তন (toggle) করা হচ্ছে
-                                  _showReactionPopup = !_showReactionPopup;
-                                });
-                              },
+                        // 🔹 টেক্সটটিকে ক্লিকযোগ্য করার জন্য recognizer যোগ করা হয়েছে
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            setState(() {
+                              // এখানে পপ-আপের অবস্থা পরিবর্তন (toggle) করা হচ্ছে
+                              _showReactionPopup = !_showReactionPopup;
+                            });
+                          },
                       ),
                       TextSpan(
                         text: paragraph41,
@@ -221,13 +194,12 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
                     ],
                   ),
                 ),
-                // 🔹 এখানে কন্ডিশন যোগ করা হয়েছে: শুধুমাত্র _showReactionPopup সত্য হলেই এটি দেখা যাবে
+                // 🔹 এখানে কন্ডিশন যোগ করা হয়েছে: শুধুমাত্র _showReactionPopup সত্য হলেই এটি দেখা যাবে
                 if (_showReactionPopup)
                   Positioned(top: -55, left: 20, child: _buildReactionPopup()),
               ],
             ),
           ),
-
           const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.only(left: 20),
@@ -250,7 +222,6 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
                     children: [
                       _buildParagraph(paragraph4),
                       _buildParagraph(paragraph5),
-
                       _buildParagraph(paragraph6),
                     ],
                   ),
@@ -263,7 +234,6 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
             padding: const EdgeInsets.only(left: 20),
             child: ExpandableSynopsis(),
           ),
-
           const SizedBox(height: 110),
         ],
       ),
@@ -272,7 +242,6 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
 
   Widget _buildParagraph(
     String text, {
-
     bool isHighlighted = false,
     bool isFaded = false,
   }) {
@@ -280,13 +249,12 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
       text,
       style: TextStyle(
         fontSize: 14.5,
-
         height: 1.7,
-
-        color:
-            isFaded
-                ? kPrimaryTextColor
-                : (isHighlighted ? kPrimaryTextColor : kPrimaryTextColor),
+        color: isFaded
+            ? AppColors.discoverkPrimaryTextColor
+            : (isHighlighted
+                ? AppColors.discoverkPrimaryTextColor
+                : AppColors.discoverkPrimaryTextColor),
         fontWeight: FontWeight.w500,
       ),
     );
@@ -298,7 +266,7 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         decoration: BoxDecoration(
-          color: kPrimaryTextColor,
+          color: AppColors.discoverkPrimaryTextColor,
           borderRadius: BorderRadius.circular(25),
         ),
         child: Row(
@@ -321,7 +289,7 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
 
   Widget _buildBottomActionBar() {
     return BottomAppBar(
-      color: kAppBarBackgroundColor,
+      color: AppColors.discoverkAppBarBackgroundColor,
       elevation: 0,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
@@ -340,7 +308,7 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
 
   Widget _buildBottomBarIcon(IconData icon) {
     return IconButton(
-      icon: Icon(icon, color: kIconColor, size: 28),
+      icon: Icon(icon, color: AppColors.discoverkIconColor, size: 28),
       onPressed: () {},
     );
   }
@@ -351,7 +319,7 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
       child: const Text(
         'Aa',
         style: TextStyle(
-          color: kIconColor,
+          color: AppColors.discoverkIconColor,
           fontSize: 18,
           fontWeight: FontWeight.w600,
         ),
@@ -363,17 +331,15 @@ class _DiscoveryScreen3State extends State<DiscoveryScreen3> {
 class _BubblePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final paint =
-        Paint()
-          ..color = kPrimaryTextColor
-          ..style = PaintingStyle.fill;
+    final paint = Paint()
+      ..color = AppColors.discoverkPrimaryTextColor
+      ..style = PaintingStyle.fill;
 
-    final path =
-        Path()
-          ..moveTo(size.width * 0.2, size.height)
-          ..lineTo(size.width * 0.2 + 8, size.height + 8)
-          ..lineTo(size.width * 0.2 + 16, size.height)
-          ..close();
+    final path = Path()
+      ..moveTo(size.width * 0.2, size.height)
+      ..lineTo(size.width * 0.2 + 8, size.height + 8)
+      ..lineTo(size.width * 0.2 + 16, size.height)
+      ..close();
 
     canvas.drawPath(path, paint);
   }
@@ -407,7 +373,7 @@ class _ExpandableSynopsisState extends State<ExpandableSynopsis> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // GestureDetector ব্যবহার করে পুরো টেক্সট এলাকাটি ক্লিকযোগ্য করা হয়েছে
+        // GestureDetector ব্যবহার করে পুরো টেক্সট এলাকাটি ক্লিকযোগ্য করা হয়েছে
         GestureDetector(
           onTap: _toggleExpanded,
           child: Stack(
@@ -419,17 +385,17 @@ class _ExpandableSynopsisState extends State<ExpandableSynopsis> {
                 style: const TextStyle(
                   fontSize: 14.5,
                   height: 1.7,
-                  color: kPrimaryTextColor,
+                  color: AppColors.discoverkPrimaryTextColor,
                   fontWeight: FontWeight.w500,
                 ),
                 // _isExpanded সত্য হলে সব লাইন দেখাবে, না হলে ৬ লাইন দেখাবে
                 maxLines: _isExpanded ? null : 6,
-                // অতিরিক্ত টেক্সটকে ক্লিপ করা হবে যাতে fade ইফেক্ট দেওয়া যায়
+                // অতিরিক্ত টেক্সটকে ক্লিপ করা হবে যাতে fade ইফেক্ট দেওয়া যায়
                 overflow: TextOverflow.clip,
               ),
 
               // ======== Fade/Blur ইফেক্ট ========
-              // শুধুমাত্র কলাপ্স থাকা অবস্থায় এই আবছা ইফেক্টটি দেখা যাবে
+              // শুধুমাত্র কলাপ্স থাকা অবস্থায় এই আবছা ইফেক্টটি দেখা যাবে
               if (!_isExpanded)
                 Positioned(
                   bottom: 0,
@@ -443,8 +409,8 @@ class _ExpandableSynopsisState extends State<ExpandableSynopsis> {
                         end: Alignment.bottomCenter,
                         colors: [
                           // উপরে স্বচ্ছ, নিচে সাদা
-                          kBackgroundColor.withOpacity(0.0),
-                          kBackgroundColor,
+                          AppColors.discoverkBackgroundColor.withOpacity(0.0),
+                          AppColors.discoverkBackgroundColor,
                         ],
                       ),
                     ),
@@ -455,7 +421,7 @@ class _ExpandableSynopsisState extends State<ExpandableSynopsis> {
         ),
 
         // ======== "Show More" বাটন ========
-        // শুধুমাত্র কলাপ্স থাকা অবস্থায় এই বাটনটি দেখা যাবে
+        // শুধুমাত্র কলাপ্স থাকা অবস্থায় এই বাটনটি দেখা যাবে
       ],
     );
   }

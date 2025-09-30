@@ -3,18 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pinterest_ui/core/images.dart';
 import 'package:pinterest_ui/shopCase/design1.dart';
-
-// Color constants extracted from the image
-class AppColors {
-  static const Color background = Color(0xFFFFFFFF);
-  static const Color primaryRed = Color(0xFFE94444);
-  static const Color primaryText = Color(0xFF212121);
-  static const Color secondaryText = Color(0xFF757575);
-  static const Color tertiaryText = Color.fromARGB(255, 112, 112, 112);
-  static const Color borderColor = Color(0XFFf4f4f4);
-  static const Color discountBg = Color(0xFFFFF0F0);
-  static const Color starColor = Color(0xFFFFA000);
-}
+import 'package:pinterest_ui/core/colors.dart';
 
 // The main screen widget that holds all the UI components
 class shopCaseDesign2 extends StatefulWidget {
@@ -75,12 +64,12 @@ class _shopCaseDesign2State extends State<shopCaseDesign2>
                   controller: _tabController,
                   isScrollable: true,
                   labelPadding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  labelColor: AppColors.primaryRed,
-                  unselectedLabelColor: AppColors.secondaryText,
-                  indicatorColor: AppColors.primaryRed,
+                  labelColor: AppColors.shopPrimaryRed,
+                  unselectedLabelColor: AppColors.shopSecondaryText,
+                  indicatorColor: AppColors.shopPrimaryRed,
                   indicatorWeight: 2.8,
                   indicatorSize: TabBarIndicatorSize.tab,
-                  dividerColor: AppColors.borderColor,
+                  dividerColor: AppColors.shopBorderColor,
                   labelStyle: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 15,
@@ -316,8 +305,8 @@ class CategoryList extends StatelessWidget {
                     category['icon'] as String,
                     colorFilter: ColorFilter.mode(
                       isSelected
-                          ? AppColors.primaryRed
-                          : AppColors.secondaryText,
+                          ? AppColors.shopPrimaryRed
+                          : AppColors.shopSecondaryText,
                       BlendMode.srcIn,
                     ),
                     width: 28,
@@ -327,10 +316,9 @@ class CategoryList extends StatelessWidget {
                   Text(
                     category['label'] as String,
                     style: TextStyle(
-                      color:
-                          isSelected
-                              ? AppColors.primaryRed
-                              : AppColors.secondaryText,
+                      color: isSelected
+                          ? AppColors.shopPrimaryRed
+                          : AppColors.shopSecondaryText,
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                     ),
@@ -365,7 +353,7 @@ class CustomAppBar extends StatelessWidget {
             child: Container(
               height: 48,
               decoration: BoxDecoration(
-                color: AppColors.background,
+                color: AppColors.shopBackground,
                 borderRadius: BorderRadius.circular(12.0),
                 border: Border.all(
                   color: const Color.fromARGB(255, 204, 204, 204),
@@ -377,14 +365,15 @@ class CustomAppBar extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 12.0),
-                      child: Icon(Icons.search, color: AppColors.tertiaryText),
+                      child:
+                          Icon(Icons.search, color: AppColors.shopTertiaryText),
                     ),
                     Expanded(
                       child: TextField(
                         decoration: InputDecoration(
                           hintText: 'What are you looking for?',
                           hintStyle: TextStyle(
-                            color: AppColors.tertiaryText,
+                            color: AppColors.shopTertiaryText,
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
                           ),
@@ -402,7 +391,7 @@ class CustomAppBar extends StatelessWidget {
             onPressed: () {},
             icon: const Icon(
               Icons.filter_list,
-              color: AppColors.primaryRed,
+              color: AppColors.shopPrimaryRed,
               weight: 10,
               fill: 1,
             ),
@@ -414,7 +403,8 @@ class CustomAppBar extends StatelessWidget {
               ),
             ),
             style: OutlinedButton.styleFrom(
-              side: const BorderSide(color: AppColors.primaryRed, width: 1.5),
+              side:
+                  const BorderSide(color: AppColors.shopPrimaryRed, width: 1.5),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),

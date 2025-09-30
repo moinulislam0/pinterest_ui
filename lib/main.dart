@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Pinterest Ui',
       theme: ThemeData(fontFamily: "poppins"),
-      home: Pages(),
+      home: HomePage(),
     );
   }
 }

@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pinterest_ui/core/images.dart';
-
-// --- Color Constants ---
-const Color kBackgroundColor = Color(0xFFFFFFFF);
-const Color kPrimaryRedColor = Color(0xFFE53935);
-const Color kLightGreyColor = Color(0xFFF5F5F5);
-const Color kSearchBarBorderColor = Color(0xFFE0E0E0);
-const Color kPrimaryTextColor = Color(0xFF212121);
-const Color kSecondaryTextColor = Color(0xFF757575);
+import 'package:pinterest_ui/core/colors.dart';
 
 // The main screen widget
 class shopCaseDesign1 extends StatelessWidget {
@@ -78,18 +71,19 @@ class SearchBarSection extends StatelessWidget {
             child: Container(
               height: 46,
               decoration: BoxDecoration(
-                border: Border.all(color: kSearchBarBorderColor),
+                border: Border.all(color: AppColors.shopkSearchBarBorderColor),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const TextField(
                 decoration: InputDecoration(
                   hintText: 'What are you looking for?',
                   hintStyle: TextStyle(
-                    color: kSecondaryTextColor,
+                    color: AppColors.shopkSecondaryTextColor,
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                   ),
-                  prefixIcon: Icon(Icons.search, color: kSecondaryTextColor),
+                  prefixIcon: Icon(Icons.search,
+                      color: AppColors.shopkSecondaryTextColor),
                   border: InputBorder.none,
                 ),
               ),
@@ -116,7 +110,7 @@ class SearchBarSection extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(5),
                   decoration: const BoxDecoration(
-                    color: kPrimaryRedColor,
+                    color: AppColors.shopkPrimaryRedColor,
                     shape: BoxShape.circle,
                   ),
                   child: const Text(
@@ -149,7 +143,7 @@ class PromoBannerSection extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         height: 185,
         decoration: BoxDecoration(
-          color: kPrimaryRedColor,
+          color: AppColors.shopkPrimaryRedColor,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Stack(
@@ -198,7 +192,7 @@ class PromoBannerSection extends StatelessWidget {
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
-                    foregroundColor: kPrimaryRedColor,
+                    foregroundColor: AppColors.shopkPrimaryRedColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -234,14 +228,15 @@ class CategoriesSection extends StatelessWidget {
         children: [
           const Row(
             children: [
-              Icon(Icons.category_outlined, color: kPrimaryRedColor, size: 26),
+              Icon(Icons.category_outlined,
+                  color: AppColors.shopkPrimaryRedColor, size: 26),
               SizedBox(width: 8),
               Text(
                 'Categories',
                 style: TextStyle(
                   fontSize: 19,
                   fontWeight: FontWeight.w600,
-                  color: kPrimaryTextColor,
+                  color: AppColors.shopkPrimaryTextColor,
                 ),
               ),
             ],
@@ -253,7 +248,7 @@ class CategoriesSection extends StatelessWidget {
               horizontal: 10.0,
             ),
             decoration: BoxDecoration(
-              color: kBackgroundColor,
+              color: AppColors.shopkBackgroundColor,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(color: const Color(0XFFf2f2f2), width: 2.5),
               boxShadow: [
@@ -312,14 +307,15 @@ class RecommendedSection extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.thumb_up_alt_outlined, color: kPrimaryRedColor),
+                    Icon(Icons.thumb_up_alt_outlined,
+                        color: AppColors.shopkPrimaryRedColor),
                     SizedBox(width: 8),
                     Text(
                       'Recommended',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
-                        color: kPrimaryTextColor,
+                        color: AppColors.shopkPrimaryTextColor,
                       ),
                     ),
                   ],
@@ -327,7 +323,7 @@ class RecommendedSection extends StatelessWidget {
                 Text(
                   'See more',
                   style: TextStyle(
-                    color: kPrimaryRedColor,
+                    color: AppColors.shopkPrimaryRedColor,
                     fontWeight: FontWeight.w500,
                     fontSize: 14,
                   ),
@@ -405,8 +401,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
         currentIndex: 0,
-        selectedItemColor: kPrimaryRedColor,
-        unselectedItemColor: kSecondaryTextColor,
+        selectedItemColor: AppColors.shopkPrimaryRedColor,
+        unselectedItemColor: AppColors.shopkSecondaryTextColor,
         selectedLabelStyle: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 12,
@@ -442,7 +438,7 @@ class CategoryItem extends StatelessWidget {
   final String label;
 
   const CategoryItem({Key? key, required this.img, required this.label})
-    : super(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

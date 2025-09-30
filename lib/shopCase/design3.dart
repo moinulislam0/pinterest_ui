@@ -1,16 +1,8 @@
-// অ্যাপে ব্যবহৃত সমস্ত কালার এখানে define করা হয়েছে।
+// অ্যাপে ব্যবহৃত সমস্ত কালার এখানে define করা হয়েছে।
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pinterest_ui/core/images.dart';
-
-const Color kPrimaryRed = Color(0xFFDB3022);
-const Color kBackgroundColor = Color(0xFFededed);
-const Color kWhite = Color(0xFFFFFFFF);
-const Color kPrimaryTextColor = Color(0xFF222222);
-const Color kSecondaryTextColor = Color(0xFF9B9B9B);
-const Color kStarColor = Color(0xFFFFBA49);
-const Color kBorderColor = Color(0xFFE0E0E0);
-const Color kDisabledColor = Color(0xFFD4D4D4);
+import 'package:pinterest_ui/core/colors.dart';
 
 class shopCaseDesign3 extends StatefulWidget {
   const shopCaseDesign3({Key? key}) : super(key: key);
@@ -20,7 +12,7 @@ class shopCaseDesign3 extends StatefulWidget {
 }
 
 class shopCaseDesign3State extends State<shopCaseDesign3> {
-  // state ম্যানেজ করার জন্য ভ্যারিয়েবল (এখন public)
+  // state ম্যানেজ করার জন্য ভ্যারিয়েবল (এখন public)
   int selectedImageIndex = 0;
   int selectedSizeIndex = 2; // ডিফল্টভাবে 'EU 37.5' সিলেক্টেড
   int quantity = 1;
@@ -115,7 +107,7 @@ class ProductAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             prefixIcon: const Icon(
               Icons.search,
-              color: kSecondaryTextColor,
+              color: AppColors.shopkSecondaryTextColor2,
               size: 20,
             ),
             filled: true,
@@ -175,16 +167,15 @@ class ImageCarousel extends StatelessWidget {
         Container(
           height: 400,
           width: double.infinity,
-          color: kBackgroundColor,
+          color: AppColors.shopkBackgroundColor2,
           child: Image.asset(
             productImages[selectedImageIndex],
             fit: BoxFit.contain,
-            errorBuilder:
-                (context, error, stackTrace) => const Icon(
-                  Icons.image_not_supported,
-                  size: 100,
-                  color: kDisabledColor,
-                ),
+            errorBuilder: (context, error, stackTrace) => const Icon(
+              Icons.image_not_supported,
+              size: 100,
+              color: AppColors.shopkDisabledColor,
+            ),
           ),
         ),
         Positioned(
@@ -221,22 +212,21 @@ class ImageCarousel extends StatelessWidget {
                   width: 60,
                   height: 60,
                   decoration: BoxDecoration(
-                    color: kWhite,
+                    color: AppColors.shopkWhite,
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color:
-                          selectedImageIndex == index
-                              ? kPrimaryRed
-                              : kBorderColor,
+                      color: selectedImageIndex == index
+                          ? AppColors.shopkPrimaryRed
+                          : AppColors.shopkBorderColor,
                       width: 1.3,
                     ),
                   ),
                   child: Image.asset(
                     productImages[index],
                     fit: BoxFit.contain,
-                    errorBuilder:
-                        (context, error, stackTrace) =>
-                            const Icon(Icons.image, color: kDisabledColor),
+                    errorBuilder: (context, error, stackTrace) => const Icon(
+                        Icons.image,
+                        color: AppColors.shopkDisabledColor),
                   ),
                 ),
               );
@@ -278,13 +268,13 @@ class ProductInfoSection extends StatelessWidget {
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,
-              color: kPrimaryTextColor,
+              color: AppColors.shopkPrimaryTextColor2,
             ),
           ),
           const SizedBox(height: 8),
           Row(
             children: const [
-              Icon(Icons.star, color: kStarColor, size: 18),
+              Icon(Icons.star, color: AppColors.shopkStarColor, size: 18),
               SizedBox(width: 4),
               Text(
                 '4.9',
@@ -357,7 +347,11 @@ class QuantitySelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        _buildQuantityButton(icon: Icons.remove, onPressed: onDecrement),
+        _buildQuantityButton(
+          icon: Icons.remove,
+          onPressed: onDecrement,
+          isIncrement: false,
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
@@ -369,7 +363,11 @@ class QuantitySelector extends StatelessWidget {
             ),
           ),
         ),
-        _buildQuantityButton(icon: Icons.add_outlined, onPressed: onIncrement),
+        _buildQuantityButton(
+          icon: Icons.add_outlined,
+          onPressed: onIncrement,
+          isIncrement: true,
+        ),
       ],
     );
   }
@@ -377,6 +375,7 @@ class QuantitySelector extends StatelessWidget {
   Widget _buildQuantityButton({
     required IconData icon,
     required VoidCallback onPressed,
+    required bool isIncrement,
   }) {
     return InkWell(
       onTap: onPressed,
@@ -385,23 +384,29 @@ class QuantitySelector extends StatelessWidget {
         width: 25,
         height: 25,
         decoration: BoxDecoration(
+          color: isIncrement
+              ? const Color.fromARGB(255, 228, 12, 12)
+              : Colors.white,
           shape: BoxShape.circle,
-          border: Border.all(
-            color: const Color.fromARGB(255, 228, 12, 12),
-            width: 1.5,
-          ),
+          border: isIncrement
+              ? null
+              : Border.all(
+                  color: const Color.fromARGB(255, 228, 12, 12),
+                  width: 1.5,
+                ),
         ),
         child: Icon(
           icon,
           size: 18,
-          color: const Color.fromARGB(255, 221, 35, 35),
+          color: isIncrement
+              ? Colors.white
+              : const Color.fromARGB(255, 228, 12, 12),
         ),
       ),
     );
   }
 }
 
-// Formerly _buildSizeSection
 class SizeSection extends StatelessWidget {
   final List<String> productSizes;
   final int selectedSizeIndex;
@@ -432,7 +437,7 @@ class SizeSection extends StatelessWidget {
                 onPressed: () {},
                 child: const Text(
                   'See All',
-                  style: TextStyle(color: kPrimaryRed),
+                  style: TextStyle(color: AppColors.shopkPrimaryRed),
                 ),
               ),
             ],
@@ -451,24 +456,27 @@ class SizeSection extends StatelessWidget {
                     label: Text(
                       productSizes[index],
                       style: TextStyle(
-                        color: isSelected ? kPrimaryRed : kPrimaryTextColor,
+                        color: isSelected
+                            ? AppColors.shopkPrimaryRed
+                            : AppColors.shopkPrimaryTextColor,
                       ),
                     ),
                     selected: isSelected,
                     onSelected:
                         isDisabled ? null : (selected) => onSizeSelected(index),
-                    backgroundColor: kWhite,
-                    selectedColor: kWhite,
-                    disabledColor: kBackgroundColor,
+                    backgroundColor: isSelected
+                        ? const Color.fromARGB(255, 194, 153, 153)
+                        : AppColors.shopkWhite,
+                    selectedColor: AppColors.shopkWhite,
+                    disabledColor: AppColors.shopkBackgroundColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                       side: BorderSide(
-                        color:
-                            isDisabled
-                                ? kBorderColor
-                                : isSelected
-                                ? kPrimaryRed
-                                : kBorderColor,
+                        color: isDisabled
+                            ? AppColors.shopkBorderColor
+                            : isSelected
+                                ? AppColors.shopkPrimaryRed
+                                : AppColors.shopkBorderColor,
                         width: 1,
                       ),
                     ),
@@ -528,7 +536,7 @@ class BottomActionBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 24, 16, 40),
       decoration: BoxDecoration(
-        color: kWhite,
+        color: AppColors.shopkWhite,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
