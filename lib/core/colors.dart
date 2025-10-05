@@ -8,6 +8,7 @@ class AppColors {
   static const Color primaryText = Color.fromARGB(255, 31, 30, 30);
   static const Color primaryText11 = Color.fromARGB(255, 88, 88, 88);
   static const Color secondaryText = Color(0xFF000000);
+  static const Color secondaryTextSub = Color(0xFFd5dceb);
   static const Color secondaryText2 = Color.fromARGB(255, 130, 131, 131);
 
   static const Color buttonBackground = Color(0xFF6A67CE);
@@ -217,13 +218,35 @@ class AppColors {
   static const Color appOrange = Color(0xFFF2994A);
   static const Color appRed = Color(0xFFEB5757);
   static const Color appBlue = Color(0xFF2F80ED);
-  static const Color appBackground1 = Color(0xFFF9FAFD);
+  static const Color appBackground1 = Color(0xFFf6f9fe);
   static const Color primaryBlue1 = Color(0xFF45aeff);
   static const Color primaryText111 = Color(0xFF101623);
   static const Color secondaryText11 = Color(0xFF9E9E9E);
   static const Color seeAllText1 = Color(0xFF4A80F0);
+  static const Color seeAllTextsub = Color(0xFF5189ef);
   static const Color cardBackground1 = Colors.white;
   static const Color shadowColor1 = Color(0xFFE8E8E8);
   static const Color ratingStar = Color(0xFFFFC107);
   static const Color unselectedBottomNav = Color(0xFF9E9E9E);
+
+  static const Color kSearchBarColor = Color(0xFFFFFFFF);
+  static const Color kCardBackgroundColor = Color(0xFFFFFFFF);
+  static const Color kAppointmentButtonColor = Color(0xFFF0F5FF);
+  static const Color kAppointmentButtonTextColor = Color(0xFF4A5E7D);
+  static const Color kOnlineIndicatorColor = Color(0xFF27AE60);
+  static const Color kSelectedIconColor = Color(0xFF4C84FF);
+  static const Color kUnselectedIconColor = Color(0xFFB0B8C7);
+  static const Color kAppBarIconColor = Color(0xFF1A2E4D);
+  
+  static const Color kWhiteColor = Color(0xFFFFFFFF);
+
+  static const Color kPrimaryBlueColor = Color(0xFF4B89F6);
+  static const Color kStarColor = Color(0xFFFFD028);
+  static const Color kLightTextColor = Color(0xFFC6CAD2);
+  static const Color kStatsCardPinkIconBg = Color(0xFFFFF0F3);
+  static const Color kStatsCardPinkIcon = Color(0xFFF8A5B9);
+  static const Color kStatsCardBlueIconBg = Color(0xFFEEF7FE);
+  static const Color kStatsCardBlueIcon = Color(0xFF4B89F6);
+  static const Color kStatsCardYellowIconBg = Color(0xFFFFF7E6);
+  static const Color kStatsCardYellowIcon = Color(0xFFFFD028);
 }

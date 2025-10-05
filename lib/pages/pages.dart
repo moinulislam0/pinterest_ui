@@ -10,6 +10,9 @@ import 'package:pinterest_ui/Mobile%20Ui/design2.dart';
 import 'package:pinterest_ui/Mobile%20Ui/design3.dart';
 import 'package:pinterest_ui/dark_ligh_mode/design1.dart';
 import 'package:pinterest_ui/dark_ligh_mode/design2.dart';
+import 'package:pinterest_ui/doctor_Visit/design1.dart';
+import 'package:pinterest_ui/doctor_Visit/design2.dart';
+import 'package:pinterest_ui/doctor_Visit/design3.dart';
 import 'package:pinterest_ui/music_Screen/design1.dart';
 import 'package:pinterest_ui/music_Screen/design2.dart';
 import 'package:pinterest_ui/music_Screen/design3.dart';
@@ -44,24 +47,24 @@ class DesignCategory {
 
 // ডেটা অপরিবর্তিত
 final List<DesignCategory> designCategories = [
-  DesignCategory(
+  const DesignCategory(
     name: 'E-Commerce Shop Case',
     icon: Icons.shopping_cart_outlined,
     date: 'Sep 29',
     designs: [
-      DesignPage(name: 'Shop Case Design 1', page: const shopCaseDesign1()),
-      DesignPage(name: 'Shop Case Design 2', page: const shopCaseDesign2()),
-      DesignPage(name: 'Shop Case Design 3', page: const shopCaseDesign3()),
+      DesignPage(name: 'Shop Case Design 1', page: shopCaseDesign1()),
+      DesignPage(name: 'Shop Case Design 2', page: shopCaseDesign2()),
+      DesignPage(name: 'Shop Case Design 3', page: shopCaseDesign3()),
     ],
   ),
-  DesignCategory(
+  const DesignCategory(
     name: 'Mobile UI',
     icon: Icons.phone_android_rounded,
     date: 'sep 21',
     designs: [
-      DesignPage(name: 'Mobile UI Design 1', page: const Design1()),
-      DesignPage(name: 'Mobile UI Design 2', page: const Design2()),
-      DesignPage(name: 'Mobile UI Design 3', page: const Design3()),
+      DesignPage(name: 'Mobile UI Design 1', page: Design1()),
+      DesignPage(name: 'Mobile UI Design 2', page: Design2()),
+      DesignPage(name: 'Mobile UI Design 3', page: Design3()),
     ],
   ),
   DesignCategory(
@@ -74,17 +77,17 @@ final List<DesignCategory> designCategories = [
       DesignPage(name: 'App Project Design 3', page: const AppProjectDesign3()),
     ],
   ),
-  DesignCategory(
+  const DesignCategory(
     name: 'Music Screens',
     icon: Icons.music_note_rounded,
     date: 'sep 25',
     designs: [
       DesignPage(
         name: 'Audiobook Home Screen',
-        page: const AudiobookHomeScreen(),
+        page: AudiobookHomeScreen(),
       ),
-      DesignPage(name: 'Audiobook Screen 2', page: const AudioScreendesign2()),
-      DesignPage(name: 'Audiobook Screen 3', page: const AudioScreendesign3()),
+      DesignPage(name: 'Audiobook Screen 2', page: AudioScreendesign2()),
+      DesignPage(name: 'Audiobook Screen 3', page: AudioScreendesign3()),
     ],
   ),
   const DesignCategory(
@@ -112,13 +115,23 @@ final List<DesignCategory> designCategories = [
     date: 'Sep 30',
     designs: [
       DesignPage(name: 'Hospital Management 1', page: Hscreen1()),
-      DesignPage(name: 'Hospital Management 2', page: const Hscreen2()),
-      DesignPage(name: 'Hospital Management  3', page: const HScreen3()),
+      DesignPage(name: 'Hospital Management 2', page: Hscreen2()),
+    ],
+  ),
+  const DesignCategory(
+    name: 'Doctor Visit',
+    icon: Icons.search_rounded,
+    date: '5 Oct 2025',
+    designs: [
+      DesignPage(name: 'Doctor Visit 1', page: DScreen1()),
+     
+      DesignPage(name: 'Doctor Visit 2', page: DScreen2()),
+       DesignPage(name: 'Doctor Visit 3', page: DScreen3()),
     ],
   ),
 ];
 
-// পরিবর্তন ১: প্রতিটি ক্যাটাগরির জন্য সুন্দর রঙের একটি লিস্ট তৈরি করা হয়েছে
+// রঙের লিস্ট অপরিবর্তিত
 final List<Map<String, Color>> colorPalette = [
   {'bg': Colors.blue.shade50, 'icon': Colors.blue.shade800},
   {'bg': Colors.green.shade50, 'icon': Colors.green.shade800},
@@ -129,18 +142,30 @@ final List<Map<String, Color>> colorPalette = [
   {'bg': Colors.orange.shade50, 'icon': Colors.orange.shade800},
 ];
 
+// ******************** পরিবর্তন শুরু ********************
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // পরিবর্তন ২: Scaffold এবং AppBar এর ডিজাইন উন্নত করা হয়েছে
+    // ক্যাটাগরিগুলোকে তারিখ অনুযায়ী গ্রুপ করা হয়েছে
+    final Map<String, List<DesignCategory>> groupedCategories = {};
+    for (var category in designCategories) {
+      if (!groupedCategories.containsKey(category.date)) {
+        groupedCategories[category.date] = [];
+      }
+      groupedCategories[category.date]!.add(category);
+    }
+    // ম্যাপের কী (তারিখ) গুলোকে একটি লিস্টে নেওয়া হয়েছে
+    final dates = groupedCategories.keys.toList();
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F9FA), // একটি সুন্দর অফ-হোয়াইট রঙ
+      backgroundColor: const Color(0xFFF8F9FA),
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'UI Collections',
+          'UI Collections by Date',
           style: TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.bold,
@@ -152,32 +177,122 @@ class HomePage extends StatelessWidget {
         shadowColor: Colors.grey.withOpacity(0.2),
       ),
       body: ListView.builder(
-        padding: const EdgeInsets.only(
-          left: 16,
-          right: 16,
-          top: 15,
-          bottom: 100,
-        ),
-        itemCount: designCategories.length,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+        itemCount: dates.length,
         itemBuilder: (context, index) {
-          final category = designCategories[index];
-          // পরিবর্তন ৩: প্রতি আইটেমের জন্য কালার প্যালেট থেকে একটি রঙ নেওয়া হয়েছে
-          final colors = colorPalette[index % colorPalette.length];
-          final designNames = category.designs.map((d) => d.name).join(', ');
+          final date = dates[index];
+          final categoriesForDate = groupedCategories[date]!;
+          // একটি তারিখের অধীনে কতগুলো ক্যাটাগরি আছে তা গণনা করা হচ্ছে
+          final categoryCount = categoriesForDate.length;
 
           return Card(
             elevation: 2,
-            shadowColor: Colors.grey.withOpacity(0.2), // সুন্দর ছায়া
+            shadowColor: Colors.grey.withOpacity(0.2),
             margin: const EdgeInsets.symmetric(vertical: 8.0),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15), // আরও রাউন্ডেড এজ
+              borderRadius: BorderRadius.circular(15),
             ),
             child: ListTile(
               contentPadding: const EdgeInsets.symmetric(
                 vertical: 12.0,
                 horizontal: 16.0,
               ),
-              // পরিবর্তন ৪: CircleAvatar এবং Icon এর রঙ পরিবর্তন করা হয়েছে
+              leading: CircleAvatar(
+                radius: 25,
+                backgroundColor: Colors.blue.shade50,
+                child: Icon(Icons.calendar_today, color: Colors.blue.shade800),
+              ),
+              title: Text(
+                date,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                  color: Colors.black87,
+                ),
+              ),
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Text(
+                  '$categoryCount ${categoryCount > 1 ? "Categories" : "Category"}',
+                  style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                ),
+              ),
+              trailing: const Icon(Icons.arrow_forward_ios_rounded,
+                  size: 18, color: Colors.grey),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CategoriesByDateScreen(
+                      date: date,
+                      categories: categoriesForDate,
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+// নতুন পেইজ: নির্দিষ্ট তারিখের ক্যাটাগরি দেখানোর জন্য
+class CategoriesByDateScreen extends StatelessWidget {
+  final String date;
+  final List<DesignCategory> categories;
+
+  const CategoriesByDateScreen({
+    super.key,
+    required this.date,
+    required this.categories,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF8F9FA),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          date,
+          style: const TextStyle(
+            color: Colors.black87,
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0.5,
+        shadowColor: Colors.grey.withOpacity(0.2),
+        iconTheme: const IconThemeData(color: Colors.black87),
+      ),
+      body: ListView.builder(
+        padding: const EdgeInsets.only(
+          left: 16,
+          right: 16,
+          top: 15,
+          bottom: 100,
+        ),
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          final category = categories[index];
+          final colors = colorPalette[index % colorPalette.length];
+          final designNames = category.designs.map((d) => d.name).join(', ');
+
+          return Card(
+            elevation: 2,
+            shadowColor: Colors.grey.withOpacity(0.2),
+            margin: const EdgeInsets.symmetric(vertical: 8.0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: ListTile(
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 12.0,
+                horizontal: 16.0,
+              ),
               leading: CircleAvatar(
                 radius: 25,
                 backgroundColor: colors['bg'],
@@ -209,14 +324,8 @@ class HomePage extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
-                      // পরিবর্তন ৫: পেইজের সংখ্যার রঙ আইকনের রঙের সাথে মেলানো হয়েছে
                       color: colors['icon'],
                     ),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    category.date,
-                    style: TextStyle(color: Colors.grey[500], fontSize: 12),
                   ),
                 ],
               ),
@@ -226,7 +335,6 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => CategoryDetailScreen(
                       category: category,
-                      // পরিবর্তন ৬: পরবর্তী পেইজে রঙ পাস করা হয়েছে
                       themeColor: colors['icon']!,
                     ),
                   ),
@@ -240,9 +348,12 @@ class HomePage extends StatelessWidget {
   }
 }
 
+// ******************** পরিবর্তন শেষ ********************
+
+// CategoryDetailScreen অপরিবর্তিত
 class CategoryDetailScreen extends StatelessWidget {
   final DesignCategory category;
-  final Color themeColor; // পরিবর্তন ৭: রঙ রিসিভ করার জন্য ভ্যারিয়েবল
+  final Color themeColor;
 
   const CategoryDetailScreen({
     super.key,
@@ -253,11 +364,10 @@ class CategoryDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // পরিবর্তন ৮: AppBar এর রঙ আগের পেইজ থেকে আসা রঙের সাথে মিলিয়ে দেওয়া হয়েছে
       appBar: AppBar(
         title: Text(category.name, style: const TextStyle(color: Colors.white)),
         backgroundColor: themeColor,
-        iconTheme: const IconThemeData(color: Colors.white), // ব্যাক আইকন সাদা
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(12.0),
@@ -266,7 +376,7 @@ class CategoryDetailScreen extends StatelessWidget {
           final design = category.designs[index];
           return Card(
             elevation: 2,
-            shadowColor: themeColor.withOpacity(0.2), // থিম কালারের ছায়া
+            shadowColor: themeColor.withOpacity(0.2),
             margin: const EdgeInsets.symmetric(vertical: 8.0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
@@ -283,7 +393,6 @@ class CategoryDetailScreen extends StatelessWidget {
                   fontSize: 16,
                 ),
               ),
-              // পরিবর্তন ৯: আইকনের রঙ থিম কালারের সাথে মেলানো হয়েছে
               trailing: Icon(Icons.slideshow_rounded, color: themeColor),
               onTap: () {
                 Navigator.push(
