@@ -369,33 +369,38 @@ class _DScreen3State extends State<DScreen3> {
                 },
                 child: Container(
                   width: 55, // Adjusted width
-                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 2), // Adjusted padding
                   decoration: BoxDecoration(
-                    // Blue background for the whole pill shape when selected
-                    color: isSelected
-                        ? AppColors.kPrimaryBlueColor
-                        : Colors.transparent,
+                    color:
+                        isSelected ? AppColors.kPrimaryBlueColor : Colors.white,
                     borderRadius: BorderRadius.circular(30), // Pill shape
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    // This is the main change to fix the alignment
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        dates[index]['day']!,
-                        style: TextStyle(
-                          color: isSelected
-                              ? AppColors.kWhiteColor.withOpacity(0.9)
-                              : AppColors.primaryText111,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          dates[index]['day']!,
+                          style: TextStyle(
+                            color: isSelected
+                                ? AppColors.kWhiteColor
+                                : Color(0XFFc3c7cf),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
-                      const SizedBox(height: 8),
-                      // This Container creates the white circle around the date
+                      SizedBox(
+                        height: 5,
+                      ),
+                      // The SizedBox between day and date circle is removed.
                       Container(
-                        padding: const EdgeInsets.all(11),
+                        padding: const EdgeInsets.all(
+                            11), // Adjusted padding for the circle
                         decoration: BoxDecoration(
-                          // White circle is only visible when selected
                           color: isSelected
                               ? AppColors.kWhiteColor
                               : Colors.transparent,
@@ -406,7 +411,7 @@ class _DScreen3State extends State<DScreen3> {
                           style: TextStyle(
                             color: isSelected
                                 ? AppColors.kPrimaryBlueColor
-                                : AppColors.kPrimaryTextColor1,
+                                : Color(0XFFc3c7cf),
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
