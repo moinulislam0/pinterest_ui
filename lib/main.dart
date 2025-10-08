@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinterest_ui/pages/pages.dart';
 
 void main() {
@@ -10,11 +11,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Pinterest Ui',
-      theme: ThemeData(fontFamily: "poppins"),
-      home: HomePage(),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Pinterest Ui',
+        theme: ThemeData(fontFamily: "poppins"),
+        home: HomePage(),
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinterest_ui/Mobile%20Ui/design1.dart';
 import 'package:pinterest_ui/core/colors.dart';
 import 'package:pinterest_ui/core/icons.dart';
@@ -10,37 +11,45 @@ class Design2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        toolbarHeight: 95,
+        title: HeaderSection(),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.more_vert, color: AppColors.textGrey1, size: 28.r),
+            onPressed: () {},
+          ),
+        ],
+      ),
       backgroundColor: AppColors.buttonText,
-      body: SafeArea(
+      body: const SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Padding(
-                padding: EdgeInsets.only(top: 10, left: 20, bottom: 13),
-                child: HeaderSection(),
-              ),
-              SizedBox(height: 10),
+            children: [
               Padding(
                 padding: EdgeInsets.only(left: 20, right: 20, bottom: 13),
                 child: AttendanceSection(),
               ),
-              SizedBox(height: 32),
+              SizedBox(height: 22),
               Padding(
                 padding: EdgeInsets.only(left: 20, bottom: 10),
                 child: SectionTitle(title: 'Jadwal Pelajaran'),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 4),
               Padding(
-                padding: EdgeInsets.only(left: 20, right: 10, bottom: 13),
+                padding: EdgeInsets.only(left: 16, right: 10, bottom: 13),
                 child: SubjectsGrid(),
               ),
-              SizedBox(height: 32),
+              SizedBox(height: 20),
               Padding(
                 padding: EdgeInsets.only(left: 20, right: 20, bottom: 13),
                 child: SectionTitle(title: 'Pekerjaan Rumah', showArrow: true),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 15),
               Padding(
                 padding: EdgeInsets.only(left: 20),
                 child: HomeworkSection(),
@@ -50,8 +59,7 @@ class Design2 extends StatelessWidget {
           ),
         ),
       ),
-
-      bottomNavigationBar: CustomBottomNavBar(),
+      bottomNavigationBar: SafeArea(child: CustomBottomNavBar()),
     );
   }
 }
@@ -82,39 +90,35 @@ class HeaderSection extends StatelessWidget {
                 ), // Clips the image inside
                 child: Image.asset(
                   AppsImages.appLogo,
-                  fit:
-                      BoxFit
-                          .cover, // Optional: ensures image fills space properly
+                  fit: BoxFit
+                      .cover, // Optional: ensures image fills space properly
                 ),
               ),
             ),
             const SizedBox(width: 18),
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Ryan Azhari',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.primaryText,
+                    color: AppColors.secondaryMu,
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 4.h),
                 Text(
                   '07110661',
                   style: TextStyle(
-                    fontSize: 14,
-                    color: AppColors.secondaryText,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w600,
+                    color: const Color.fromARGB(255, 183, 187, 194),
                   ),
                 ),
               ],
             ),
           ],
-        ),
-        IconButton(
-          icon: const Icon(Icons.more_vert, color: AppColors.secondaryText),
-          onPressed: () {},
         ),
       ],
     );
@@ -131,18 +135,24 @@ class AttendanceSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 10),
-        const Text(
+        Text(
           'Absen kehadiran hari ini',
-          style: TextStyle(fontSize: 14, color: AppColors.secondaryText),
+          style: TextStyle(
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w600,
+            color: const Color.fromARGB(255, 183, 187, 194),
+          ),
         ),
         const SizedBox(height: 13),
         Row(
           children: [
             Expanded(
               child: ElevatedButton(
+                autofocus: false,
+                onHover: (value) => {false},
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.buttonBackground,
+                  backgroundColor: AppColors.primaryColorMu,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -152,7 +162,7 @@ class AttendanceSection extends StatelessWidget {
                 child: const Text(
                   'Pin Code',
                   style: TextStyle(
-                    color: AppColors.buttonText,
+                    color: AppColors.whiteGreyMu,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -163,12 +173,15 @@ class AttendanceSection extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: AppColors.buttonBackground, width: 2),
+                border: Border.all(color: AppColors.primaryColorMu, width: 2),
               ),
               child: IconButton(
+                hoverColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
                 icon: const Icon(
                   Icons.qr_code_scanner,
-                  color: AppColors.secondaryText,
+                  color: AppColors.primaryColorMu,
                 ),
                 onPressed: () {},
                 iconSize: 28,
@@ -195,17 +208,18 @@ class SectionTitle extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 18,
+          style: TextStyle(
+            fontSize: 16.sp,
             fontWeight: FontWeight.w600,
-            color: AppColors.primaryText,
+            color: AppColors.secondaryMu,
           ),
         ),
         if (showArrow)
-          const Icon(
+          Icon(
             Icons.arrow_forward_ios,
-            size: 16,
-            color: AppColors.secondaryText,
+            size: 16.sp,
+            weight: 10.w,
+            color: AppColors.primaryColorMu,
           ),
       ],
     );
@@ -223,41 +237,49 @@ class SubjectsGrid extends StatelessWidget {
         'label': 'MTK',
         'icon': Icons.calculate_outlined,
         'color': AppColors.mtkBg,
+        'color1': AppColors.mtkBg1,
       },
       {
         'label': 'B.Indo',
         'icon': Icons.menu_book_outlined,
         'color': AppColors.bindoBg,
+        'color1': AppColors.bindoBg1,
       },
       {
         'label': 'B.Inggris',
         'icon': Icons.translate_outlined,
         'color': AppColors.binggrisBg,
+        'color1': AppColors.binggrisBg1,
       },
       {
         'label': 'Fisika',
         'icon': Icons.science_outlined,
         'color': AppColors.fisikaBg,
+        'color1': AppColors.fisikaBg1,
       },
       {
         'label': 'Kimia',
         'icon': Icons.biotech_outlined,
         'color': AppColors.kimiaBg,
+        'color1': AppColors.kimiaBg1,
       },
       {
         'label': 'Biologi',
         'icon': Icons.eco_outlined,
         'color': AppColors.biologiBg,
+        'color1': AppColors.biologiBg1,
       },
       {
         'label': 'Olahraga',
         'icon': Icons.sports_basketball_outlined,
         'color': AppColors.olahragaBg,
+        'color1': AppColors.olahragaBg1,
       },
       {
         'label': 'Agama',
         'icon': Icons.mosque_outlined,
         'color': AppColors.agamaBg,
+        'color1': AppColors.agamaBg1,
       },
     ];
 
@@ -267,7 +289,7 @@ class SubjectsGrid extends StatelessWidget {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 4,
         crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
+        mainAxisSpacing: 5,
         childAspectRatio: 0.79,
       ),
       itemCount: subjects.length,
@@ -277,6 +299,7 @@ class SubjectsGrid extends StatelessWidget {
           label: subject['label'] as String,
           icon: subject['icon'] as IconData,
           color: subject['color'] as Color,
+          color1: subject['color1'] as Color,
         );
       },
     );
@@ -290,26 +313,26 @@ class HomeworkSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 160,
+      height: 125.h,
       width: double.infinity,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          HomeworkCard(
+          const HomeworkCard(
             subject: 'Agama',
             description: 'Mencari Riwayat\nSaling Menghargai',
-            icon: Icons.mosque_outlined,
-            iconColor: Colors.yellow.shade800,
-            bgColor: AppColors.agamaBg,
+            icon: Icons.logout_rounded,
+            iconColor: Colors.white,
+            bgColor: Color(0XFFcdd2a6),
           ),
           const SizedBox(width: 16),
-          HomeworkCard(
+          const HomeworkCard(
             subject: 'Fisika',
             description: 'Menghitung Rumus\nKubus',
-            icon: Icons.science_outlined,
-            iconColor: Colors.orange.shade800,
-            bgColor: AppColors.fisikaBg,
+            icon: Icons.ac_unit,
+            iconColor: Colors.white,
+            bgColor: Color(0XFFd0ba9e),
           ),
           const SizedBox(width: 16),
           HomeworkCard(
@@ -353,12 +376,13 @@ class HomeworkSection extends StatelessWidget {
 class SubjectIcon extends StatelessWidget {
   final String label;
   final IconData icon;
-  final Color color;
+  final Color color, color1;
   const SubjectIcon({
     super.key,
     required this.label,
     required this.icon,
     required this.color,
+    required this.color1,
   });
 
   @override
@@ -367,18 +391,20 @@ class SubjectIcon extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(14.r),
           decoration: BoxDecoration(
             color: color,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Icon(icon, color: AppColors.primaryText, size: 28),
+          child: Icon(icon, color: color1, size: 24.sp),
         ),
-        const SizedBox(height: 15),
-        Text(
-          label,
-          style: const TextStyle(fontSize: 15, color: AppColors.secondaryText),
-        ),
+        SizedBox(height: 12.h),
+        Text(label,
+            style: TextStyle(
+              fontSize: 11.sp,
+              fontWeight: FontWeight.w600,
+              color: AppColors.primaryColorMu,
+            )),
       ],
     );
   }
@@ -403,7 +429,7 @@ class HomeworkCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 230,
+      width: 210.w,
       padding: const EdgeInsets.only(left: 22, top: 20),
       decoration: BoxDecoration(
         color: AppColors.d1CardbgColor,
@@ -422,33 +448,33 @@ class HomeworkCard extends StatelessWidget {
           Row(
             children: [
               Container(
-                height: 40,
-                width: 40,
-                padding: const EdgeInsets.all(8),
+                height: 30.h,
+                width: 30.w,
+                padding: EdgeInsets.all(2.r),
                 decoration: BoxDecoration(
                   color: bgColor,
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(10.r),
                 ),
-                child: Icon(icon, size: 25, color: iconColor),
+                child: Icon(icon, size: 15.sp, color: iconColor),
               ),
-              const SizedBox(width: 18),
+              SizedBox(width: 14.w),
               Text(
                 subject,
-                style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.secondaryText,
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.primaryColorMu,
                 ),
               ),
             ],
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 12.h),
           Text(
             description,
-            style: const TextStyle(
-              fontSize: 17,
+            style: TextStyle(
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
-              color: AppColors.primaryText,
+              color: AppColors.secondaryMu,
               height: 1.3,
             ),
           ),

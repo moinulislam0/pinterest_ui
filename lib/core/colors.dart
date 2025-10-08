@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  //Mobile Ui All Colors
+  static const Color primaryColorMu = Color(0xFF8089cc);
+  static const Color textGrey = Color.fromARGB(255, 110, 112, 114);
+  static const Color textGrey1 = Color(0xFFB7BBC0);
+  static const Color secondaryMu = Color.fromARGB(255, 79, 79, 80);
+  static const Color whiteGreyMu = Color.fromARGB(255, 224, 229, 243);
   // ==== EXISTING COLORS ====
   static const Color d1CardbgColor = Color.fromARGB(255, 236, 238, 245);
   static const Color background = Color(0xFFF3F4FB);
@@ -14,7 +20,7 @@ class AppColors {
   static const Color buttonBackground = Color(0xFF6A67CE);
   static const Color buttonText = Color(0xFFFFFFFF);
   static const Color mtkIconBackground = Color(0xFFFCEEEE);
-  static const Color mtkIconForeground = Color(0xFFE57373);
+  static const Color mtkIconForeground = Color.fromARGB(255, 197, 144, 148);
   static const Color olahragaIconBackground = Color(0xFFE8F5E9);
   static const Color olahragaIconForeground = Color(0xFF81C784);
   static const Color kimiaIconBackground = Color(0xFFF3E5F5);
@@ -25,13 +31,23 @@ class AppColors {
 
   // Subject icon background colors
   static const Color mtkBg = Color(0xFFFCEEEE);
+  static const Color mtkBg1 = Color.fromARGB(255, 206, 149, 149);
   static const Color bindoBg = Color(0xFFE3E7FE);
+  static const Color bindoBg1 = Color.fromARGB(255, 146, 160, 243);
   static const Color binggrisBg = Color(0xFFE0F7FA);
+  static const Color binggrisBg1 = Color.fromARGB(255, 120, 184, 192);
   static const Color fisikaBg = Color(0xFFFFF3E0);
+  static const Color fisikaBg1 = Color.fromARGB(255, 241, 188, 101);
   static const Color kimiaBg = Color(0xFFF3E5F5);
+  static const Color kimiaBg1 = Color.fromARGB(255, 196, 179, 241);
   static const Color biologiBg = Color(0xFFE3F2FD);
+  static const Color biologiBg1 = Color.fromARGB(255, 148, 190, 219);
+
   static const Color olahragaBg = Color(0xFFE8F5E9);
+  static const Color olahragaBg1 = Color.fromARGB(255, 158, 230, 164);
+
   static const Color agamaBg = Color(0xFFF9FBE7);
+  static const Color agamaBg1 = Color.fromARGB(255, 166, 177, 74);
 
   static const Color accentColor = Color(0xFF6A5AE0);
   static const Color calendarDayText = Color(0xFFB0B0B0);
@@ -237,7 +253,7 @@ class AppColors {
   static const Color kSelectedIconColor = Color(0xFF4C84FF);
   static const Color kUnselectedIconColor = Color(0xFFB0B8C7);
   static const Color kAppBarIconColor = Color(0xFF1A2E4D);
-  
+
   static const Color kWhiteColor = Color(0xFFFFFFFF);
 
   static const Color kPrimaryBlueColor = Color(0xFF4B89F6);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinterest_ui/core/colors.dart';
 import 'package:pinterest_ui/core/icons.dart';
 
@@ -9,67 +10,64 @@ class Design1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Header Section
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
-              child: Text(
-                'Tugas Hari Ini',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primaryText,
+      body: Column(
+        children: [
+          // Header Section
+          Padding(
+            padding: EdgeInsets.only(left: 16, right: 16, top: 45, bottom: 25),
+            child: Text(
+              'Tugas Hari Ini',
+              style: TextStyle(
+                fontSize: 19.sp,
+                fontWeight: FontWeight.bold,
+                color: AppColors.secondaryMu,
+              ),
+            ),
+          ),
+          // Task List Section
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.symmetric(horizontal: 16.r),
+              children: [
+                TaskCard(
+                  subject: 'MTK',
+                  icon: Icons.pie_chart, // Placeholder icon
+                  iconBackgroundColor: AppColors.mtkIconBackground,
+                  iconForegroundColor: AppColors.mtkIconForeground,
+                  chapter: 'Bab 4',
+                  description: 'Kerjakan 5 soal essay di halaman 52 buku paket',
+                  dueDate: 'Dikumpulkan pukul 10:00',
                 ),
-              ),
+                SizedBox(height: 16.h),
+                TaskCard(
+                  subject: 'Olahraga',
+                  icon: Icons.sports_esports, // Placeholder icon
+                  iconBackgroundColor: AppColors.olahragaIconBackground,
+                  iconForegroundColor: AppColors.olahragaIconForeground,
+                  chapter: 'Bab 3',
+                  description:
+                      'Buat rangkuman bab 3 di google docs\nbuat kesimpulan dari materi di bab 3',
+                  dueDate: 'Dikumpulkan pukul 16:30',
+                ),
+                SizedBox(height: 17.h),
+                TaskCard(
+                  subject: 'Kimia',
+                  icon: Icons.science, // Placeholder icon
+                  iconBackgroundColor: AppColors.kimiaIconBackground,
+                  iconForegroundColor: AppColors.kimiaIconForeground,
+                  chapter: 'Bab 5',
+                  description:
+                      'Definisikan zat yang terkandung dalam\nbesi, buat di google docs',
+                  dueDate: 'Dikumpulkan pukul 10:00',
+                ),
+                SizedBox(height: 70.h),
+              ],
             ),
-            // Task List Section
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                children: const [
-                  TaskCard(
-                    subject: 'MTK',
-                    icon: AppIcons.homeIconss, // Placeholder icon
-                    iconBackgroundColor: AppColors.mtkIconBackground,
-                    iconForegroundColor: AppColors.mtkIconForeground,
-                    chapter: 'Bab 4',
-                    description:
-                        'Kerjakan 5 soal essay di halaman 52 buku paket',
-                    dueDate: 'Dikumpulkan pukul 10:00',
-                  ),
-                  SizedBox(height: 16),
-                  TaskCard(
-                    subject: 'Olahraga',
-                    icon: AppIcons.homeIconss, // Placeholder icon
-                    iconBackgroundColor: AppColors.olahragaIconBackground,
-                    iconForegroundColor: AppColors.olahragaIconForeground,
-                    chapter: 'Bab 3',
-                    description:
-                        'Buat rangkuman bab 3 di google docs\nbuat kesimpulan dari materi di bab 3',
-                    dueDate: 'Dikumpulkan pukul 16:30',
-                  ),
-                  SizedBox(height: 16),
-                  TaskCard(
-                    subject: 'Kimia',
-                    icon: AppIcons.homeIconss, // Placeholder icon
-                    iconBackgroundColor: AppColors.kimiaIconBackground,
-                    iconForegroundColor: AppColors.kimiaIconForeground,
-                    chapter: 'Bab 5',
-                    description:
-                        'Definisikan zat yang terkandung dalam\nbesi, buat di google docs',
-                    dueDate: 'Dikumpulkan pukul 10:00',
-                  ),
-                  SizedBox(height: 70),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
       // Bottom Navigation Bar
-      bottomNavigationBar: CustomBottomNavBar(),
+      bottomNavigationBar: SafeArea(child: CustomBottomNavBar()),
     );
   }
 }
@@ -98,10 +96,10 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(16.sp),
       decoration: BoxDecoration(
-        color: AppColors.d1CardbgColor,
-        borderRadius: BorderRadius.circular(16.0),
+        color: AppColors.primaryColorMu.withValues(alpha: .05),
+        borderRadius: BorderRadius.circular(16.sp),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,76 +107,78 @@ class TaskCard extends StatelessWidget {
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(6.sp),
                 decoration: BoxDecoration(
                   color: iconForegroundColor,
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                   ),
-                  child: Icon(icon, color: Colors.white, size: 20.0),
+                  child: Icon(icon, color: Colors.white, size: 15.sp),
                 ),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 12.w),
               Text(
                 subject,
-                style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.secondaryText,
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.primaryColorMu.withOpacity(0.5),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 12.h),
           Text(
             chapter,
-            style: const TextStyle(
-              fontSize: 19,
-              fontWeight: FontWeight.bold,
-              color: AppColors.primaryText,
+            style: TextStyle(
+              fontSize: 15.r,
+              fontWeight: FontWeight.w600,
+              color: AppColors.secondaryMu,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
           Text(
             description,
-            style: const TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.w500,
-              color: AppColors.primaryText,
+            style: TextStyle(
+              fontSize: 15.r,
+              fontWeight: FontWeight.w600,
+              color: AppColors.secondaryMu,
               height: 1.5,
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 dueDate,
-                style: const TextStyle(
-                  fontSize: 15,
-                  color: AppColors.secondaryText,
-                ),
+                style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w700,
+                    color: const Color.fromARGB(255, 206, 211, 219)),
               ),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.buttonBackground,
+                  backgroundColor: AppColors.primaryColorMu,
                   foregroundColor: AppColors.buttonText,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 12,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 24.r,
                   ),
                   elevation: 0,
                 ),
-                child: const Text(
+                child: Text(
                   'Detail',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                      fontSize: 15.sp,
+                      color: AppColors.whiteGreyMu,
+                      fontWeight: FontWeight.w600),
                 ),
               ),
             ],
@@ -200,10 +200,10 @@ class CustomBottomNavBarState extends State<CustomBottomNavBar> {
   int _selectedIndex = 0;
 
   static const List<Map<String, dynamic>> _navBarItems = [
-    {'icon': AppIcons.homeIconss, 'label': 'Home'},
-    {'icon': AppIcons.homeIconss, 'label': 'Tugas'},
-    {'icon': AppIcons.homeIconss, 'label': 'Jadwal'},
-    {'icon': AppIcons.homeIconss, 'label': 'Profile'},
+    {'icon': Icons.home, 'label': 'Home'},
+    {'icon': Icons.school, 'label': 'Tugas'},
+    {'icon': Icons.calendar_month, 'label': 'Jadwal'},
+    {'icon': Icons.person, 'label': 'Profile'},
   ];
 
   void _onItemTapped(int index) {
@@ -215,7 +215,7 @@ class CustomBottomNavBarState extends State<CustomBottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 115,
+      height: 80.h,
       decoration: BoxDecoration(
         color: AppColors.buttonText,
         borderRadius: const BorderRadius.only(
@@ -238,41 +238,41 @@ class CustomBottomNavBarState extends State<CustomBottomNavBar> {
 
           return GestureDetector(
             onTap: () => _onItemTapped(index),
-
             behavior: HitTestBehavior.translucent,
-            child:
-                isSelected
-                    ? Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 22,
-                        vertical: 10,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.buttonBackground.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(item['icon'], color: AppColors.navBarSelected),
-                          const SizedBox(width: 8),
-                          Text(
-                            item['label'],
-                            style: const TextStyle(
-                              color: AppColors.navBarSelected,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                    : Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Icon(
-                        item['icon'],
-                        color: AppColors.navBarUnselected,
-                        size: 28,
-                      ),
+            child: isSelected
+                ? Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 22,
+                      vertical: 10,
                     ),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryColorMu.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(item['icon'],
+                            size: 20.sp, color: AppColors.primaryColorMu),
+                        SizedBox(width: 8.w),
+                        Text(
+                          item['label'],
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            color: AppColors.primaryColorMu,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : Padding(
+                    padding: EdgeInsets.all(12.sp),
+                    child: Icon(
+                      item['icon'],
+                      color: AppColors.navBarUnselected,
+                      size: 20.sp,
+                    ),
+                  ),
           );
         }),
       ),
