@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinterest_ui/core/colors.dart';
 import 'package:pinterest_ui/core/images.dart';
 
@@ -26,7 +27,6 @@ class _HomeScreenState extends State<AppProjectDesign2> {
         toolbarHeight: 80,
         automaticallyImplyLeading: false,
         scrolledUnderElevation: 0,
-
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -37,7 +37,7 @@ class _HomeScreenState extends State<AppProjectDesign2> {
                   height: 50.0,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       image: AssetImage(AppsImages.appLogo),
                       fit: BoxFit.cover,
                     ),
@@ -50,17 +50,18 @@ class _HomeScreenState extends State<AppProjectDesign2> {
                     Text(
                       'Good Morning',
                       style: TextStyle(
-                        color: AppColors.secondaryText,
-                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.textColor,
+                        fontSize: 12.sp,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    SizedBox(height: 3.h),
                     Text(
                       'Jakob',
                       style: TextStyle(
-                        color: AppColors.primaryText,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                        color: AppColors.textColor,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
@@ -70,12 +71,12 @@ class _HomeScreenState extends State<AppProjectDesign2> {
             Wrap(
               children: [
                 Container(
-                  width: 40,
-                  height: 40,
-                  padding: const EdgeInsets.all(4),
+                  width: 40.w,
+                  height: 40.h,
+                  padding: EdgeInsets.all(4.r),
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 226, 226, 228),
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(8.r),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.1),
@@ -85,19 +86,19 @@ class _HomeScreenState extends State<AppProjectDesign2> {
                     ],
                   ),
                   child: Icon(
-                    Icons.notifications_none,
+                    Icons.notifications,
                     color: AppColors.primaryText,
-                    size: 28,
+                    size: 20.sp,
                   ),
                 ),
-                SizedBox(width: 20),
+                SizedBox(width: 20.w),
                 Container(
-                  width: 40,
-                  height: 40,
-                  padding: const EdgeInsets.all(4),
+                  width: 40.w,
+                  height: 40.h,
+                  padding: EdgeInsets.all(4.r),
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 226, 226, 228),
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(8.r),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.1),
@@ -109,7 +110,7 @@ class _HomeScreenState extends State<AppProjectDesign2> {
                   child: Icon(
                     Icons.message,
                     color: AppColors.primaryText,
-                    size: 20,
+                    size: 20.sp,
                   ),
                 ),
               ],
@@ -122,30 +123,24 @@ class _HomeScreenState extends State<AppProjectDesign2> {
       body: SafeArea(
         child: ListView(
           children: [
-            const SizedBox(height: 30),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16),
-              child: const CustomSearchBar(),
+            SizedBox(height: 10.h),
+            const Padding(
+              padding: EdgeInsets.only(left: 16, right: 16),
+              child: CustomSearchBar(),
+            ),
+            SizedBox(height: 20.h),
+            const Padding(
+              padding: EdgeInsets.only(left: 16, right: 16),
+              child: PromoBanner(),
             ),
             const SizedBox(height: 30),
-
             Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16),
-              child: const PromoBanner(),
+              padding: EdgeInsets.only(left: 8.r, right: 8.r),
+              child: QuickActions(),
             ),
-            const SizedBox(height: 30),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 22),
-              child: const QuickActions(),
-            ),
-            const SizedBox(height: 40),
-
+            SizedBox(height: 15.h),
             const CategoriesSection(),
-
-            const SizedBox(height: 40),
-
+            SizedBox(height: 20.h),
             Padding(
               padding: const EdgeInsets.only(right: 8),
               child: SectionHeader(
@@ -160,7 +155,6 @@ class _HomeScreenState extends State<AppProjectDesign2> {
           ],
         ),
       ),
-
       bottomNavigationBar: CustomBottomNavBarDesign2(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,
@@ -177,18 +171,21 @@ class CustomSearchBar extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(
         hintText: 'Search for tools',
-        hintStyle: TextStyle(color: AppColors.secondaryText),
-
-        suffixIcon: Icon(Icons.search, color: AppColors.secondaryText),
+        hintStyle: TextStyle(
+          fontSize: 12.sp,
+          color: AppColors.ubColor,
+        ),
+        suffixIcon:
+            Icon(Icons.search, color: const Color.fromARGB(255, 66, 66, 66)),
         filled: true,
         fillColor: const Color.fromARGB(255, 226, 226, 228),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
           borderSide: BorderSide.none,
         ),
-        contentPadding: const EdgeInsets.symmetric(
-          vertical: 14.0,
-          horizontal: 16.0,
+        contentPadding: EdgeInsets.symmetric(
+          vertical: 8.r,
+          horizontal: 16.r,
         ),
       ),
     );
@@ -222,29 +219,30 @@ class PromoBanner extends StatelessWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       'GET YOUR',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 14,
+                        fontSize: 12.sp,
                         letterSpacing: 1.5,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     Text(
                       'Needed',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                     Text(
                       'Tool',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
@@ -282,48 +280,42 @@ class QuickActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: const Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          QuickActionItem(
-            iconData: Icons.article_outlined,
-            label: 'Newsfeed',
-            color: Color(0xFFF2994A),
-          ),
-          SizedBox(width: 30),
-          QuickActionItem(
-            iconData: Icons.dashboard_customize_outlined,
-            label: 'Dashboard',
-            color: Color(0xFFEB5757),
-          ),
-          SizedBox(width: 30),
-          QuickActionItem(
-            iconData: Icons.construction, // একটি উপযুক্ত আইকন
-            label: 'My Tools',
-            color: AppColors.primaryGreen,
-          ),
-          SizedBox(width: 30),
-          QuickActionItem(
-            iconData: Icons.dashboard_customize_outlined,
-            label: 'Dashboard',
-            color: Color(0xFFEB5757),
-          ),
-          SizedBox(width: 30),
-          QuickActionItem(
-            iconData: Icons.construction, // একটি উপযুক্ত আইকন
-            label: 'My Tools',
-            color: AppColors.primaryGreen,
-          ),
-          SizedBox(width: 30),
-          QuickActionItem(
-            iconData: Icons.monetization_on_outlined,
-            label: 'Earnings',
-            color: Color(0xFF2F80ED),
-          ),
-        ],
-      ),
+    return GridView.count(
+      // Proti row-te koyta item thakbe
+      crossAxisCount: 4,
+
+      // Horizontal space
+      crossAxisSpacing: 12,
+
+      // Vertical space
+      mainAxisSpacing: 12,
+
+      // Ei duita line GridView-ke onanno widget-er vitor thik moto kaj korte help korbe
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+
+      children: const [
+        QuickActionItem(
+          iconData: Icons.article_outlined,
+          label: 'Newsfeed',
+          color: Color(0xFFF2994A),
+        ),
+        QuickActionItem(
+          iconData: Icons.dashboard_customize_outlined,
+          label: 'Dashboard',
+          color: Color(0xFFEB5757),
+        ),
+        QuickActionItem(
+          iconData: Icons.construction, // একটি উপযুক্ত আইকন
+          label: 'My Tools',
+          color: AppColors.primaryGreen,
+        ),
+        QuickActionItem(
+          iconData: Icons.dashboard_customize_outlined,
+          label: 'Dashboard',
+          color: Color(0xFFEB5757),
+        ),
+      ],
     );
   }
 }
@@ -346,15 +338,16 @@ class QuickActionItem extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: const EdgeInsets.all(12),
+          padding: EdgeInsets.all(8.r),
           decoration: BoxDecoration(
             color: color.withOpacity(0.1),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Icon(iconData, color: color, size: 28),
+          child: Icon(iconData, color: color, size: 24.sp),
         ),
         const SizedBox(height: 13),
-        Text(label, style: TextStyle(color: AppColors.secondaryText)),
+        Text(label,
+            style: TextStyle(fontSize: 10.sp, color: AppColors.secondaryText)),
       ],
     );
   }
@@ -375,19 +368,19 @@ class CategoriesSection extends StatelessWidget {
           color: AppColors.orange,
           colors1: AppColors.orange,
         ),
-        const SizedBox(height: 35),
+        SizedBox(height: 20.h),
         Padding(
           padding: const EdgeInsets.only(left: 16),
           child: SizedBox(
-            height: 130,
+            height: 110.h,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: const [
                 CategoryCard(label: 'Plumber', imageUrl: AppsImages.con_man),
                 SizedBox(width: 20),
-                CategoryCard(label: 'Carpenter', imageUrl: AppsImages.con_man),
+                CategoryCard(label: 'Carpenter', imageUrl: AppsImages.clothes),
                 SizedBox(width: 20),
-                CategoryCard(label: 'Welder', imageUrl: AppsImages.con_man),
+                CategoryCard(label: 'Welder', imageUrl: AppsImages.doctor),
                 SizedBox(width: 20),
                 CategoryCard(label: 'Mechanic', imageUrl: AppsImages.con_man),
                 SizedBox(width: 20),
@@ -414,20 +407,13 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
-      height: 120,
+      width: 90.w,
+      height: 130.h,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.withOpacity(0.2)),
+        border: Border.all(color: Colors.grey.withOpacity(0.2), width: 1.5),
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            spreadRadius: 1,
-            blurRadius: 10,
-          ),
-        ],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -436,11 +422,12 @@ class CategoryCard extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             label,
-            style: TextStyle(color: AppColors.primaryText),
+            style: TextStyle(color: AppColors.primaryText, fontSize: 12.sp),
             textAlign: TextAlign.center,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
+          const SizedBox(height: 5),
         ],
       ),
     );
@@ -461,7 +448,6 @@ class ToolsSection extends StatelessWidget {
           color: AppColors.primaryGreen,
           colors1: AppColors.primaryGreen,
         ),
-
         const SizedBox(height: 16),
       ],
     );
@@ -509,13 +495,13 @@ class SectionHeader extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600,
                   color: AppColors.primaryText,
                 ),
               ),
-              SizedBox(height: 8),
+              SizedBox(height: 4.h),
               if (subtitle != null && subtitle!.isNotEmpty)
                 Text(
                   subtitle!,
@@ -527,7 +513,6 @@ class SectionHeader extends StatelessWidget {
             ],
           ),
           const Spacer(),
-
           Container(
             height: 35,
             width: 90,
@@ -549,7 +534,10 @@ class SectionHeader extends StatelessWidget {
                 children: [
                   Text(
                     'See all',
-                    style: TextStyle(color: colors1, fontSize: 14),
+                    style: TextStyle(
+                        color: colors1,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w600),
                   ),
                   SizedBox(width: 4),
                   Icon(Icons.chevron_right, color: colors1, size: 20),
@@ -592,9 +580,8 @@ class CustomBottomNavBarDesign2 extends StatelessWidget {
           icon: Icon(Icons.home), // সাধারণ অবস্থায় শুধু আইকন
           activeIcon: Column(
             // নির্বাচিত অবস্থায় আইকন এবং নিচে একটি লাইন
-            mainAxisSize:
-                MainAxisSize
-                    .min, // Column কে যতটুকু দরকার ততটুকু জায়গা নিতে বলা হয়েছে
+            mainAxisSize: MainAxisSize
+                .min, // Column কে যতটুকু দরকার ততটুকু জায়গা নিতে বলা হয়েছে
             children: [
               Icon(Icons.home),
               SizedBox(height: 4),
@@ -610,38 +597,48 @@ class CustomBottomNavBarDesign2 extends StatelessWidget {
           ),
         ),
         BottomNavigationBarItem(
-          label: 'Grid',
-          icon: Icon(Icons.grid_view),
+          label: 'Contact',
+          icon: Icon(
+            Icons.contact_page,
+            color: Colors.grey,
+          ), // সাধারণ অবস্থায় শুধু আইকন
           activeIcon: Column(
-            mainAxisSize: MainAxisSize.min,
+            // নির্বাচিত অবস্থায় আইকন এবং নিচে একটি লাইন
+            mainAxisSize: MainAxisSize
+                .min, // Column কে যতটুকু দরকার ততটুকু জায়গা নিতে বলা হয়েছে
             children: [
-              Icon(Icons.grid_view),
+              Icon(Icons.contact_page),
               SizedBox(height: 4),
               Container(
-                height: 3,
-                width: 24,
+                height: 5,
+                width: 5,
                 decoration: BoxDecoration(
                   color: AppColors.primaryGreen,
-                  borderRadius: BorderRadius.circular(2),
+                  borderRadius: BorderRadius.circular(30),
                 ),
               ),
             ],
           ),
         ),
         BottomNavigationBarItem(
-          label: 'Search',
-          icon: Icon(Icons.search),
+          label: 'Message',
+          icon: Icon(
+            Icons.message,
+            color: Colors.grey,
+          ), // সাধারণ অবস্থায় শুধু আইকন
           activeIcon: Column(
-            mainAxisSize: MainAxisSize.min,
+            // নির্বাচিত অবস্থায় আইকন এবং নিচে একটি লাইন
+            mainAxisSize: MainAxisSize
+                .min, // Column কে যতটুকু দরকার ততটুকু জায়গা নিতে বলা হয়েছে
             children: [
-              Icon(Icons.search),
+              Icon(Icons.message),
               SizedBox(height: 4),
               Container(
-                height: 3,
-                width: 24,
+                height: 5,
+                width: 5,
                 decoration: BoxDecoration(
                   color: AppColors.primaryGreen,
-                  borderRadius: BorderRadius.circular(2),
+                  borderRadius: BorderRadius.circular(30),
                 ),
               ),
             ],
@@ -649,37 +646,47 @@ class CustomBottomNavBarDesign2 extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           label: 'Chat',
-          icon: Icon(Icons.chat_bubble_outline),
+          icon: Icon(
+            Icons.dashboard,
+            color: Colors.grey,
+          ), // সাধারণ অবস্থায় শুধু আইকন
           activeIcon: Column(
-            mainAxisSize: MainAxisSize.min,
+            // নির্বাচিত অবস্থায় আইকন এবং নিচে একটি লাইন
+            mainAxisSize: MainAxisSize
+                .min, // Column কে যতটুকু দরকার ততটুকু জায়গা নিতে বলা হয়েছে
             children: [
-              Icon(Icons.chat_bubble_outline),
+              Icon(Icons.dashboard),
               SizedBox(height: 4),
               Container(
-                height: 3,
-                width: 24,
+                height: 5,
+                width: 5,
                 decoration: BoxDecoration(
                   color: AppColors.primaryGreen,
-                  borderRadius: BorderRadius.circular(2),
+                  borderRadius: BorderRadius.circular(30),
                 ),
               ),
             ],
           ),
         ),
         BottomNavigationBarItem(
-          label: 'Profile',
-          icon: Icon(Icons.person_outline),
+          label: 'Search',
+          icon: Icon(
+            Icons.search,
+            color: Colors.grey,
+          ), // সাধারণ অবস্থায় শুধু আইকন
           activeIcon: Column(
-            mainAxisSize: MainAxisSize.min,
+            // নির্বাচিত অবস্থায় আইকন এবং নিচে একটি লাইন
+            mainAxisSize: MainAxisSize
+                .min, // Column কে যতটুকু দরকার ততটুকু জায়গা নিতে বলা হয়েছে
             children: [
-              Icon(Icons.person_outline),
+              Icon(Icons.search),
               SizedBox(height: 4),
               Container(
-                height: 3,
-                width: 24,
+                height: 5,
+                width: 5,
                 decoration: BoxDecoration(
                   color: AppColors.primaryGreen,
-                  borderRadius: BorderRadius.circular(2),
+                  borderRadius: BorderRadius.circular(30),
                 ),
               ),
             ],

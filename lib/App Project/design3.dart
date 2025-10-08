@@ -58,7 +58,6 @@ class _AppProjectDesign3State extends State<AppProjectDesign3> {
                 color: AppColors.backgroundTop,
                 borderRadius: BorderRadius.circular(12),
               ),
-
               child: InkWell(
                 borderRadius: BorderRadius.circular(12),
                 onTap: () {
@@ -104,7 +103,6 @@ class _AppProjectDesign3State extends State<AppProjectDesign3> {
               right: 24,
               bottom: 100,
             ),
-
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               crossAxisSpacing: 16.0,
@@ -118,7 +116,6 @@ class _AppProjectDesign3State extends State<AppProjectDesign3> {
           ),
         ),
       ),
-
       bottomNavigationBar: CustomBottomNavBarDesign2(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,

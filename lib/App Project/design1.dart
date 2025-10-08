@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinterest_ui/core/colors.dart';
 import 'package:pinterest_ui/core/images.dart';
 
@@ -10,46 +11,45 @@ class AppProjectDesign1 extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // const SizedBox(height: 100),
+          SizedBox(height: 60.h),
           Container(
-            height: 400,
+            height: 350.h,
             width: double.infinity,
             color: const Color.fromARGB(255, 231, 231, 231),
-
             child: Image.asset(AppsImages.con_man),
           ),
           const SizedBox(height: 50),
 
           const PageIndicator(),
-          const SizedBox(height: 48.0),
+          SizedBox(height: 30.h),
 
-          const Text(
+          Text(
             'Find Tools You Need',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w600,
               color: AppColors.textColor,
             ),
           ),
           const SizedBox(height: 20.0),
 
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: const Text(
+            padding: EdgeInsets.only(left: 22.r, right: 22.r),
+            child: Text(
               'Uborro is a tool sharing platform we create this app to help our users to easily find tools online sothat they dont have to buy one saves both money & time',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 15.0,
-                color: AppColors.subtextColor,
+                fontSize: 12.9.sp,
+                color: AppColors.ubColor,
                 fontWeight: FontWeight.w500,
                 height: 1.5,
               ),
             ),
           ),
-          const SizedBox(height: 50),
+          SizedBox(height: 12.h),
 
-          const NavigationButton(),
+          SafeArea(child: const NavigationButton()),
           //const SizedBox(height: 100),
         ],
       ),
@@ -66,25 +66,23 @@ class PageIndicator extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          width: 24.0,
-          height: 8.0,
+          width: 18.w,
+          height: 6.h,
           decoration: BoxDecoration(
             color: AppColors.primaryColor,
             borderRadius: BorderRadius.circular(4.0),
           ),
         ),
         const SizedBox(width: 8.0),
-
         Container(
-          width: 8.0,
-          height: 8.0,
+          width: 8.w,
+          height: 8.h,
           decoration: const BoxDecoration(
             color: AppColors.inactiveDotColor,
             shape: BoxShape.circle,
           ),
         ),
         const SizedBox(width: 8.0),
-
         Container(
           width: 8.0,
           height: 8.0,
@@ -104,20 +102,14 @@ class NavigationButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 60.0,
-      height: 60.0,
+      width: 50.w,
+      height: 50.h,
       decoration: BoxDecoration(
-        color: AppColors.primaryColor,
+        color: AppColors.primaryColorAP,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 10.0,
-            offset: Offset(0, 4),
-          ),
-        ],
       ),
-      child: const Icon(Icons.arrow_forward, color: Colors.white, size: 28.0),
+      child: const Icon(Icons.arrow_forward,
+          color: AppColors.whiteGreyMu, size: 28.0),
     );
   }
 }

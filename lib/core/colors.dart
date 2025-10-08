@@ -7,6 +7,9 @@ class AppColors {
   static const Color textGrey1 = Color(0xFFB7BBC0);
   static const Color secondaryMu = Color.fromARGB(255, 79, 79, 80);
   static const Color whiteGreyMu = Color.fromARGB(255, 224, 229, 243);
+  //app Project
+  static const Color primaryColorAP = Color(0xFF108c67);
+  static const Color ubColor = Color(0XFF7e7e7e);
   // ==== EXISTING COLORS ====
   static const Color d1CardbgColor = Color.fromARGB(255, 236, 238, 245);
   static const Color background = Color(0xFFF3F4FB);
