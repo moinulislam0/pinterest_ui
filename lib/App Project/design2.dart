@@ -155,9 +155,11 @@ class _HomeScreenState extends State<AppProjectDesign2> {
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavBarDesign2(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
+      bottomNavigationBar: SafeArea(
+        child: CustomBottomNavBarDesign2(
+          selectedIndex: _selectedIndex,
+          onItemTapped: _onItemTapped,
+        ),
       ),
     );
   }

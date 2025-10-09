@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinterest_ui/core/colors.dart';
 import 'package:pinterest_ui/core/images.dart';
 
@@ -48,12 +49,12 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.0),
       child: Text(
         "Let's Discover",
         style: TextStyle(
-          fontSize: 28.0,
+          fontSize: 16.sp,
           fontWeight: FontWeight.bold,
           color: AppColors.primaryText,
         ),
@@ -91,11 +92,11 @@ class _CategoriesSectionState extends State<CategoriesSection> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Categories',
                 style: TextStyle(
                   color: Color.fromARGB(255, 128, 125, 125),
-                  fontSize: 16.0,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -111,7 +112,7 @@ class _CategoriesSectionState extends State<CategoriesSection> {
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 16),
           child: Wrap(
-            spacing: 8.0,
+            spacing: 15.sp,
             children: [
               CategoryChip(
                 label: 'Romance',
@@ -204,12 +205,11 @@ class CategoryChip extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
+        padding: EdgeInsets.symmetric(horizontal: 5.r, vertical: 8.r),
         decoration: BoxDecoration(
-          color:
-              isActive
-                  ? AppColors.activeCategoryBackground
-                  : AppColors.inactiveCategoryBackground,
+          color: isActive
+              ? AppColors.activeCategoryBackground
+              : AppColors.inactiveCategoryBackground,
           borderRadius: BorderRadius.circular(20.0),
         ),
         child: Row(
@@ -217,27 +217,20 @@ class CategoryChip extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding: EdgeInsets.all(6),
+              padding: EdgeInsets.all(5.r),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 // শর্ত অনুযায়ী আইকনের ব্যাকগ্রাউন্ড কালার পরিবর্তন
-                color:
-                    isActive
-                        ? Colors.white
-                        : const Color.fromARGB(
-                          255,
-                          107,
-                          107,
-                          107,
-                        ).withOpacity(0.1),
+                color: isActive
+                    ? Colors.white
+                    : const Color(0xFF6B6B6B).withOpacity(0.1),
               ),
               child: Icon(
                 icon,
-                size: 15.0,
-                color:
-                    isActive
-                        ? AppColors.inactiveCategoryicon
-                        : AppColors.inactiveCategoryText,
+                size: 15.sp,
+                color: isActive
+                    ? AppColors.inactiveCategoryicon
+                    : AppColors.inactiveCategoryText,
               ),
             ),
             const SizedBox(width: 8.0),
@@ -246,15 +239,15 @@ class CategoryChip extends StatelessWidget {
               child: Text(
                 label,
                 style: TextStyle(
-                  color:
-                      isActive
-                          ? AppColors.activeCategoryText
-                          : AppColors.inactiveCategoryText,
+                  color: isActive
+                      ? AppColors.whiteGreyMu
+                      : AppColors.inactiveCategoryText,
                   fontWeight: FontWeight.w700,
-                  fontSize: 15,
+                  fontSize: 13.sp,
                 ),
               ),
             ),
+            SizedBox(width: 4.w),
           ],
         ),
       ),
@@ -262,145 +255,165 @@ class CategoryChip extends StatelessWidget {
   }
 }
 
+// Reusable widget for the book carousel section.
 class BookCarousel extends StatefulWidget {
-  const BookCarousel({Key? key}) : super(key: key);
+  final int initialIndex;
+
+  const BookCarousel({Key? key, this.initialIndex = 0}) : super(key: key);
 
   @override
   State<BookCarousel> createState() => _BookCarouselState();
 }
 
 class _BookCarouselState extends State<BookCarousel> {
-  int _selectedIndex = 0;
+  final double _kItemWidth = 150.0;
+  final double _kHorizontalPadding = 8.0;
+  late PageController _pageController;
+  late int _selectedIndex;
 
-  void _onBookTap(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  // === পরিবর্তন ১: এখানে ছবির একটি তালিকা তৈরি করুন ===
+  final List<String> _bookImages = [
+    AppsImages.book,
+    AppsImages.clothes,
+    AppsImages.doctor,
+    AppsImages.book,
+    AppsImages.book,
+    AppsImages.doctor,
+    // আপনার প্রয়োজন অনুযায়ী আরও ছবি যোগ করুন
+  ];
+  // =================================================
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.initialIndex;
+    _pageController = PageController(
+      initialPage: _selectedIndex,
+      viewportFraction: 0.5,
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double itemWidthWithPadding = _kItemWidth + (_kHorizontalPadding * 2);
+    final double newViewportFraction = itemWidthWithPadding / screenWidth;
+
+    if (_pageController.viewportFraction != newViewportFraction) {
+      _pageController = PageController(
+        initialPage: _selectedIndex,
+        viewportFraction: newViewportFraction,
+      );
+    }
+
     return SizedBox(
       height: 220,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 24),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: BookCover(
-                  isSelected: _selectedIndex == 0,
-                  onTap: () => _onBookTap(0),
+      child: PageView.builder(
+        clipBehavior: Clip.none,
+        controller: _pageController,
+        // === পরিবর্তন ২: itemCount এখন তালিকার দৈর্ঘ্যের উপর নির্ভর করবে ===
+        itemCount: _bookImages.length,
+        // ============================================================
+        itemBuilder: (context, index) {
+          return AnimatedBuilder(
+            animation: _pageController,
+            builder: (context, child) {
+              double pageOffset = 0;
+              if (_pageController.position.haveDimensions) {
+                pageOffset = (_pageController.page ?? 0) - index;
+              }
+
+              final double scale =
+                  (1.0 - (pageOffset.abs() * 0.15)).clamp(0.85, 1.0);
+              final double translateY = pageOffset.abs() * 30.0;
+
+              return Transform.translate(
+                offset: Offset(0, translateY),
+                child: Transform.scale(
+                  scale: scale,
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: _kHorizontalPadding),
+                    child: BookCover(
+                      // === পরিবর্তন ৩: তালিকা থেকে নির্দিষ্ট index-এর ছবিটি পাস করুন ===
+                      images: _bookImages[index],
+                      // ==============================================================
+                      isSelected: _selectedIndex == index,
+                      onTap: () {
+                        _pageController.animateToPage(
+                          index,
+                          duration: const Duration(milliseconds: 400),
+                          curve: Curves.easeOut,
+                        );
+                      },
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(width: 16),
-              BookCover(
-                isSelected: _selectedIndex == 1,
-                onTap: () => _onBookTap(1),
-              ),
-              const SizedBox(width: 16),
-              BookCover(
-                isSelected: _selectedIndex == 2,
-                onTap: () => _onBookTap(2),
-              ),
-              const SizedBox(width: 16),
-              BookCover(
-                isSelected: _selectedIndex == 3,
-                onTap: () => _onBookTap(3),
-              ),
-              const SizedBox(width: 16),
-              BookCover(
-                isSelected: _selectedIndex == 4,
-                onTap: () => _onBookTap(4),
-              ),
-              const SizedBox(width: 16),
-              BookCover(
-                isSelected: _selectedIndex == 5,
-                onTap: () => _onBookTap(5),
-              ),
-            ],
-          ),
-        ),
+              );
+            },
+          );
+        },
+        onPageChanged: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
       ),
     );
   }
 }
 
+// A simplified display widget for the example
 class BookCover extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
+  final String images;
 
-  const BookCover({Key? key, required this.isSelected, required this.onTap})
-    : super(key: key);
+  const BookCover({
+    Key? key,
+    required this.isSelected,
+    required this.onTap,
+    required this.images,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const double _kItemWidth = 150.0;
+    // const double _kHorizontalPadding = 8.0; // এই লাইনটির আর প্রয়োজন নেই
     return GestureDetector(
       onTap: onTap,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            width: 130,
-            height: isSelected ? 210 : 180,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              color: Colors.grey[300],
-              boxShadow:
-                  isSelected
-                      ? [
-                        BoxShadow(
-                          color: const Color.fromARGB(
-                            255,
-                            223,
-                            166,
-                            166,
-                          ).withOpacity(0.25),
-                          
-                          blurRadius:
-                              20, 
-                          offset: const Offset(
-                            0,
-                            10,
-                          ), 
-                        ),
-                      ]
-                      : [],
-            ),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                image: const DecorationImage(
-                  image: AssetImage(AppsImages.book),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        width: _kItemWidth,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: isSelected ? Colors.blue.shade400 : Colors.grey.shade400,
+          boxShadow: isSelected
+              ? [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    blurRadius: 15,
+                    offset: const Offset(0, 5),
+                  )
+                ]
+              : [],
+        ),
+        // === পরিবর্তন এখানে করা হয়েছে ===
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(
+              12), // কন্টেইনারের সাথে মিলিয়ে রাউন্ডেড কর্নার
+          child: Image.asset(
+            images, // আপনার AppImages.doctor ভেরিয়েবলটি এখানে ব্যবহার করুন
+            fit: BoxFit.cover, // ইমেজটি যেন পুরো কন্টেইনার জুড়ে থাকে
           ),
-          if (isSelected)
-            Positioned(
-              top: 8,
-              left: 8,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: BoxDecoration(
-                  color: AppColors.numberBadgeBackground,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: const Text(
-                  '#1',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-            ),
-        ],
+        ),
+        // ============================
       ),
     );
   }
@@ -471,7 +484,7 @@ class StatItem extends StatelessWidget {
   final String value;
 
   const StatItem({Key? key, required this.icon, required this.value})
-    : super(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -516,13 +529,12 @@ class _BookDescriptionState extends State<BookDescription> {
   void initState() {
     super.initState();
 
-    _tapRecognizer =
-        TapGestureRecognizer()
-          ..onTap = () {
-            setState(() {
-              _isExpanded = !_isExpanded;
-            });
-          };
+    _tapRecognizer = TapGestureRecognizer()
+      ..onTap = () {
+        setState(() {
+          _isExpanded = !_isExpanded;
+        });
+      };
   }
 
   @override

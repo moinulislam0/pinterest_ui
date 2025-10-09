@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinterest_ui/App%20Project/design2.dart';
 import 'package:pinterest_ui/Mobile%20Ui/design1.dart';
 import 'package:pinterest_ui/core/colors.dart';
@@ -9,23 +10,52 @@ import 'package:pinterest_ui/core/images.dart';
 class Category {
   final String name;
   final String imagePath;
+  final IconData icon; // আইকন যোগ করা হয়েছে
 
-  const Category({required this.name, required this.imagePath});
+  const Category({
+    required this.name,
+    required this.imagePath,
+    required this.icon, // কনস্ট্রাক্টরে আইকন যোগ করা হয়েছে
+  });
 }
 
 final List<Category> categories = [
-  const Category(name: 'Plumber', imagePath: AppsImages.plumber),
-  const Category(name: 'Carpenter', imagePath: AppsImages.plumber),
-  const Category(name: 'Welder', imagePath: AppsImages.plumber),
-  const Category(name: 'Contactor', imagePath: AppsImages.plumber),
-  const Category(name: 'Electrician', imagePath: AppsImages.plumber),
-  const Category(name: 'Painter', imagePath: AppsImages.plumber),
-  const Category(name: 'Laundry', imagePath: AppsImages.plumber),
-  const Category(name: 'Mechanic', imagePath: AppsImages.plumber),
-  const Category(name: 'Cleaner', imagePath: AppsImages.plumber),
-  const Category(name: 'Carpenter', imagePath: AppsImages.plumber),
-  const Category(name: 'Electrician', imagePath: AppsImages.plumber),
-  const Category(name: 'Contactor', imagePath: AppsImages.plumber),
+  const Category(
+      name: 'Plumber', imagePath: AppsImages.book, icon: Icons.plumbing),
+  const Category(
+      name: 'Carpenter',
+      imagePath: AppsImages.plumber,
+      icon: Icons.cleaning_services),
+  const Category(
+      name: 'Welder', imagePath: AppsImages.dcUser, icon: Icons.engineering),
+  const Category(
+      name: 'Contactor', imagePath: AppsImages.doctor, icon: Icons.business),
+  const Category(
+      name: 'Electrician',
+      imagePath: AppsImages.bag,
+      icon: Icons.electrical_services),
+  const Category(
+      name: 'Painter', imagePath: AppsImages.asso, icon: Icons.format_paint),
+  const Category(
+      name: 'Laundry',
+      imagePath: AppsImages.plumber,
+      icon: Icons.local_laundry_service),
+  const Category(
+      name: 'Mechanic', imagePath: AppsImages.plumber, icon: Icons.car_repair),
+  const Category(
+      name: 'Cleaner',
+      imagePath: AppsImages.doctor,
+      icon: Icons.cleaning_services),
+  const Category(
+      name: 'Carpenter',
+      imagePath: AppsImages.clothes,
+      icon: Icons.engineering),
+  const Category(
+      name: 'Electrician',
+      imagePath: AppsImages.doctorImage,
+      icon: Icons.electrical_services),
+  const Category(
+      name: 'Contactor', imagePath: AppsImages.plumber, icon: Icons.business),
 ];
 
 class AppProjectDesign3 extends StatefulWidget {
@@ -52,8 +82,8 @@ class _AppProjectDesign3State extends State<AppProjectDesign3> {
           child: Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: Container(
-              height: 40,
-              width: 40,
+              height: 40.h,
+              width: 40.w,
               decoration: BoxDecoration(
                 color: AppColors.backgroundTop,
                 borderRadius: BorderRadius.circular(12),
@@ -82,7 +112,10 @@ class _AppProjectDesign3State extends State<AppProjectDesign3> {
         scrolledUnderElevation: 0,
         title: Text(
           "Categories",
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+          style: TextStyle(
+              fontSize: 16.sp,
+              color: AppColors.primaryText,
+              fontWeight: FontWeight.w600),
         ),
         centerTitle: true,
       ),
@@ -98,7 +131,7 @@ class _AppProjectDesign3State extends State<AppProjectDesign3> {
           bottom: false,
           child: GridView.builder(
             padding: const EdgeInsets.only(
-              top: 40,
+              top: 30,
               left: 24,
               right: 24,
               bottom: 100,
@@ -107,18 +140,21 @@ class _AppProjectDesign3State extends State<AppProjectDesign3> {
               crossAxisCount: 3,
               crossAxisSpacing: 16.0,
               mainAxisSpacing: 16.0,
-              childAspectRatio: 0.85,
+              childAspectRatio: .8,
             ),
             itemCount: categories.length,
             itemBuilder: (context, index) {
+              
               return CategoryCard(category: categories[index]);
             },
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomNavBarDesign2(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
+      bottomNavigationBar: SafeArea(
+        child: CustomBottomNavBarDesign2(
+          selectedIndex: _selectedIndex,
+          onItemTapped: _onItemTapped,
+        ),
       ),
     );
   }
@@ -127,6 +163,7 @@ class _AppProjectDesign3State extends State<AppProjectDesign3> {
 class CategoryCard extends StatelessWidget {
   final Category category;
 
+  // কনস্ট্রাক্টর থেকে icon প্যারামিটারটি সরিয়ে দেওয়া হয়েছে
   const CategoryCard({super.key, required this.category});
 
   @override
@@ -138,7 +175,7 @@ class CategoryCard extends StatelessWidget {
           width: 2,
         ),
         color: AppColors.cardColor,
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(20.r),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -146,29 +183,29 @@ class CategoryCard extends StatelessWidget {
           // ক্যাটেগরির ছবি
           Image.asset(
             category.imagePath,
-            height: 75,
+            height: 50.h,
             errorBuilder: (context, error, stackTrace) {
-              return const Icon(
-                Icons.work,
-                size: 50,
+              // এখানে category অবজেক্ট থেকে icon ব্যবহার করা হচ্ছে
+              return Icon(
+                category.icon,
                 color: AppColors.textColor,
+                size: 40,
               );
             },
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 15.h),
 
           Text(
             category.name,
-            style: const TextStyle(
-              color: AppColors.textColor1,
-              fontSize: 14,
+            style: TextStyle(
+              color: AppColors.primaryText,
+              fontSize: 12.sp,
               fontWeight: FontWeight.w500,
             ),
+            textAlign: TextAlign.center,
           ),
         ],
       ),
     );
   }
 }
-
-// বটম নেভিগেশন বার উইজেট

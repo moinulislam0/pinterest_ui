@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinterest_ui/core/colors.dart';
 import 'package:pinterest_ui/core/images.dart';
 
@@ -18,12 +19,12 @@ class AudioScreendesign3 extends StatelessWidget {
           "A Teaspoon of Earth...",
           style: TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: 22,
+            fontSize: 16.sp,
             fontFamily: 'serif',
           ),
         ),
         centerTitle: true,
-        toolbarHeight: 90,
+        toolbarHeight: 80.sp,
         scrolledUnderElevation: 0,
         // backgroundColor: Colors.transparent, <-- এটিও রিমুভ করা হয়েছে
         elevation: 0,
@@ -38,13 +39,13 @@ class AudioScreendesign3 extends StatelessWidget {
           ),
         ),
         leading: Padding(
-          padding: const EdgeInsets.only(left: 12),
+          padding: EdgeInsets.only(left: 12.r),
           child: IconButton(
             icon: Center(
               child: Icon(
                 Icons.arrow_back,
                 color: AppColors.primaryText,
-                size: 28,
+                size: 24.sp,
               ),
             ),
             onPressed: () {},
@@ -52,10 +53,10 @@ class AudioScreendesign3 extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.bookmark_outline,
               color: AppColors.secondaryText,
-              size: 28,
+              size: 20.sp,
             ),
             onPressed: () {},
           ),
@@ -65,7 +66,7 @@ class AudioScreendesign3 extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            height: screenHeight * 0.530,
+            height: screenHeight * 0.470,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [AppColors.gradientStart2, AppColors.gradientStart2],
@@ -78,42 +79,41 @@ class AudioScreendesign3 extends StatelessWidget {
               ),
             ),
           ),
-
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 10),
               Padding(
-                padding: const EdgeInsets.only(left: 24, right: 24),
+                padding: EdgeInsets.only(left: 24, right: 24),
                 child: TextExpandedwidget(),
               ),
               SizedBox(height: 30),
               Padding(
-                padding: const EdgeInsets.only(left: 24, right: 24),
+                padding: EdgeInsets.only(left: 24, right: 24),
                 child: Text(
                   '"Where is Mahtab?" Saba asks again, and fidgets in the backseat of the car. Her father drives, while in the passenger seat her mother searches her purse for passports and plane tickets and all the papers needed to get out of Iran.',
                   style: TextStyle(
                     color: AppColors.primaryText,
-                    fontSize: 17,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
                     height: 1.6,
                     fontFamily: 'sans-serif',
                   ),
                 ),
               ),
-              SizedBox(height: 68),
+              SizedBox(height: 80.h),
               Padding(
-                padding: const EdgeInsets.only(left: 24, right: 24),
+                padding: EdgeInsets.only(left: 24, right: 24),
                 child: AudioWaveform(),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: 20.h),
               Padding(
-                padding: const EdgeInsets.only(left: 24, right: 24),
+                padding: EdgeInsets.only(left: 24, right: 24),
                 child: hours(),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 40.h),
               Padding(
-                padding: const EdgeInsets.only(left: 18, right: 10),
+                padding: EdgeInsets.only(left: 18, right: 10),
                 child: PlayerControls(),
               ),
             ],
@@ -196,23 +196,33 @@ class AudioWaveform extends StatelessWidget {
       50,
       40,
       20,
+      28,
+      26,
+      16,
+      24,
+      30,
+      20,
+      50,
     ];
 
     return SizedBox(
-      height: 55,
+      height:
+          50.h, // সর্বোচ্চ উচ্চতার জন্য SizedBox এর height কিছুটা বাড়ানো হলো
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: List.generate(barHeights.length, (index) {
-          // প্লে হওয়া অংশের রঙ এবং বাকি অংশের রঙ নির্ধারণ
-          final color =
-              index < 16 ? AppColors.primaryBlue : AppColors.waveformInactive;
-          return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 1.5),
-            width: 5.5,
-            height: barHeights[index],
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(4),
+          final color = index < 14
+              ? AppColors.primaryColorMS1
+              : Color.fromARGB(68, 168, 175, 240);
+          return Expanded(
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 1.w),
+              width: 3.3.w,
+              height: barHeights[index].h,
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(4.r),
+              ),
             ),
           );
         }),
@@ -230,9 +240,9 @@ class TextExpandedwidget extends StatelessWidget {
       children: [
         RichText(
           text: TextSpan(
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.primaryText,
-              fontSize: 17,
+              fontSize: 14.sp,
               height: 1.6,
             ),
             children: [
@@ -246,14 +256,13 @@ class TextExpandedwidget extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 1.0),
                   decoration: BoxDecoration(
                     color: AppColors.highlightBackground,
-
                     borderRadius: BorderRadius.circular(4.0),
                   ),
-                  child: const Text(
+                  child: Text(
                     'muddled memories within memories',
                     style: TextStyle(
                       color: AppColors.primaryText,
-                      fontSize: 16.0,
+                      fontSize: 12.sp,
                     ),
                   ),
                 ),
@@ -275,12 +284,18 @@ class hours extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text("00:42:13", style: TextStyle(color: AppColors.secondaryText2)),
-        Text("02:49:23", style: TextStyle(color: AppColors.secondaryText2)),
-      ],
+    return Expanded(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text("00:42:13",
+              style:
+                  TextStyle(fontSize: 10.sp, color: AppColors.secondaryText2)),
+          Text("02:49:23",
+              style:
+                  TextStyle(fontSize: 10.sp, color: AppColors.secondaryText2)),
+        ],
+      ),
     );
   }
 }
@@ -293,61 +308,60 @@ class PlayerControls extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
       children: [
         IconButton(
           padding: EdgeInsets.zero,
-          icon: const Icon(
+          icon: Icon(
             Icons.format_list_bulleted,
             color: AppColors.iconColor,
-            size: 28,
+            size: 20.sp,
           ),
           onPressed: () {},
         ),
         IconButton(
           padding: EdgeInsets.zero,
-          icon: const Icon(
+          icon: Icon(
             Icons.fast_rewind,
-            color: AppColors.primaryBlue,
-            size: 32,
+            color: AppColors.primaryColorMS1,
+            size: 20.sp,
           ),
           onPressed: () {},
         ),
         Container(
-          width: 60,
-          height: 60,
+          width: 50.w,
+          height: 50.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24),
-            color: AppColors.primaryBlue,
+            color: AppColors.primaryColorMS1,
             boxShadow: [
               BoxShadow(
                 color: Color(0x445C6AF0),
                 blurRadius: 10,
-                offset: Offset(0, 5),
+                offset: Offset(0, 8),
               ),
             ],
           ),
           child: IconButton(
             padding: EdgeInsets.zero,
-            icon: const Icon(Icons.pause, color: Colors.white, size: 40),
+            icon: Icon(Icons.pause, color: Colors.white, size: 28.sp),
             onPressed: () {},
           ),
         ),
         IconButton(
           padding: EdgeInsets.zero,
-          icon: const Icon(
+          icon: Icon(
             Icons.fast_forward,
-            color: AppColors.primaryBlue,
-            size: 32,
+            color: AppColors.primaryColorMS1,
+            size: 20.sp,
           ),
           onPressed: () {},
         ),
         IconButton(
           padding: EdgeInsets.zero,
-          icon: const Icon(
+          icon: Icon(
             Icons.nights_stay_outlined,
             color: AppColors.iconColor,
-            size: 28,
+            size: 20.sp,
           ),
           onPressed: () {},
         ),

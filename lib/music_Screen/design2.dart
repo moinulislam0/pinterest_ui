@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinterest_ui/core/colors.dart';
 import 'package:pinterest_ui/core/images.dart';
 
@@ -41,7 +42,7 @@ class AudioScreendesign2 extends StatelessWidget {
           IconButton(
             icon: const Icon(
               Icons.favorite,
-              color: AppColors.primaryBlue,
+              color: AppColors.primaryColorMS1,
               size: 28,
             ),
             onPressed: () {},
@@ -66,7 +67,6 @@ class AudioScreendesign2 extends StatelessWidget {
                 ),
               ),
             ),
-
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -82,7 +82,7 @@ class AudioScreendesign2 extends StatelessWidget {
                 const ProgressBar(),
                 SizedBox(height: screenHeight * 0.035),
                 const ContinueButton(),
-                SizedBox(height: screenHeight * 0.04),
+                SizedBox(height: 12.h),
                 const BookStats(),
                 SizedBox(height: screenHeight * 0.04),
                 Padding(
@@ -161,11 +161,11 @@ class BookTitleAndAuthor extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 40),
       child: Column(
         children: [
-          const Text(
+          Text(
             'A Teaspoon of Earth and Sea',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 23.5,
+              fontSize: 16.sp,
               fontFamily: 'serif',
               fontWeight: FontWeight.w700,
               color: AppColors.primaryText,
@@ -174,7 +174,7 @@ class BookTitleAndAuthor extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             'by Dina Nayeri',
-            style: TextStyle(fontSize: 14, color: AppColors.secondaryText2),
+            style: TextStyle(fontSize: 12.sp, color: AppColors.secondaryText2),
           ),
         ],
       ),
@@ -187,27 +187,27 @@ class ProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 150),
+      padding: EdgeInsets.symmetric(horizontal: 130.r),
       child: Row(
         children: [
           Expanded(
             child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
+              borderRadius: BorderRadius.all(Radius.circular(20.r)),
               child: LinearProgressIndicator(
-                value: .4,
-                minHeight: 6,
+                value: .2.sp,
+                minHeight: 5.h,
                 borderRadius: BorderRadius.circular(20),
                 backgroundColor: AppColors.progressBackground,
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  AppColors.primaryBlue,
+                  AppColors.primaryColorMS1,
                 ),
               ),
             ),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12.w),
           Text(
             '24%',
-            style: TextStyle(fontSize: 12, color: AppColors.secondaryText2),
+            style: TextStyle(fontSize: 10.sp, color: AppColors.secondaryText2),
           ),
         ],
       ),
@@ -220,32 +220,30 @@ class ContinueButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 80),
+      padding: EdgeInsets.symmetric(horizontal: 80.r, vertical: 10.r),
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primaryBlue,
+          backgroundColor: AppColors.primaryColorMS1,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(22),
+            borderRadius: BorderRadius.circular(22.r),
           ),
-          padding: const EdgeInsets.symmetric(vertical: 18),
-          minimumSize: const Size(double.infinity, 56), // সম্পূর্ণ প্রস্থ জুড়ে
-          elevation: 5,
-          shadowColor: AppColors.primaryBlue.withOpacity(0.2),
+
+          minimumSize: Size(double.infinity, 56.r), // সম্পূর্ণ প্রস্থ জুড়ে
         ),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Continue listening',
               style: TextStyle(
-                fontSize: 17,
-                color: Colors.white,
+                fontSize: 14.sp,
+                color: AppColors.whiteGreyMu,
                 fontWeight: FontWeight.w700,
               ),
             ),
             SizedBox(width: 10),
-            Icon(Icons.headphones, color: Colors.white, size: 26),
+            Icon(Icons.headphones, color: AppColors.whiteGreyMu, size: 20.sp),
           ],
         ),
       ),
@@ -257,16 +255,15 @@ class BookStats extends StatelessWidget {
   const BookStats({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(left: 28, right: 24),
-      child: Row(
+    return Padding(
+      padding: EdgeInsets.only(left: 28.r, right: 24.r),
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           StatItem(
             value: '4.7',
             label: 'Rating',
-
             icon: Icons.star,
             iconColor: AppColors.starYellow,
           ),
@@ -294,28 +291,27 @@ class StatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           label,
-          style: const TextStyle(fontSize: 14, color: AppColors.lightText),
+          style: TextStyle(fontSize: 10.sp, color: AppColors.lightText),
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: 5.h),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               value,
-              style: const TextStyle(
-                fontSize: 19,
-                fontWeight: FontWeight.w500,
-                color: AppColors.primaryText,
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w400,
+                color: AppColors.primaryColorMS2,
               ),
             ),
             SizedBox(width: 10),
             if (icon != null) ...[
-              Icon(icon, color: iconColor, size: 24),
               const SizedBox(width: 4),
+              Icon(icon, color: iconColor, size: 24),
             ],
           ],
         ),
@@ -349,10 +345,10 @@ class _OverViewSectionState extends State<OverViewSection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Overview',
           style: TextStyle(
-            fontSize: 15,
+            fontSize: 12.sp,
             fontWeight: FontWeight.w400,
             color: AppColors.secondaryText2,
           ),
@@ -360,10 +356,9 @@ class _OverViewSectionState extends State<OverViewSection> {
         const SizedBox(height: 10),
         AnimatedCrossFade(
           duration: const Duration(milliseconds: 300),
-          crossFadeState:
-              _isExpanded
-                  ? CrossFadeState.showSecond
-                  : CrossFadeState.showFirst,
+          crossFadeState: _isExpanded
+              ? CrossFadeState.showSecond
+              : CrossFadeState.showFirst,
 
           // 🔹 Collapsed Version
           firstChild: SizedBox(
@@ -376,28 +371,27 @@ class _OverViewSectionState extends State<OverViewSection> {
                       _isExpanded = !_isExpanded; // টগল হবে
                     });
                   },
-                  child:
-                      _isExpanded
-                          ? Text(
-                            text,
-                            style: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.primaryText,
-                            ),
-                            textAlign: TextAlign.left,
-                          )
-                          : Text(
-                            text,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.primaryText,
-                            ),
-                            textAlign: TextAlign.left,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 6,
+                  child: _isExpanded
+                      ? Text(
+                          text,
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.primaryColorMS2,
                           ),
+                          textAlign: TextAlign.left,
+                        )
+                      : Text(
+                          text,
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.primaryColorMS2,
+                          ),
+                          textAlign: TextAlign.left,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 6,
+                        ),
                 ),
 
                 // 🔹 Fade effect at bottom

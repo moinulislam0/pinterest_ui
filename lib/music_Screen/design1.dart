@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinterest_ui/core/colors.dart';
 import 'package:pinterest_ui/core/images.dart';
 
@@ -33,77 +34,76 @@ class _AudiobookHomeScreenState extends State<AudiobookHomeScreen> {
         elevation: 0,
       ),
       backgroundColor: AppColors.bg,
-      body: SafeArea(
-        bottom: false,
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 5),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: const GreetingWidget(),
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 5),
+                    Padding(
+                      padding: EdgeInsets.only(left: 20.r),
+                      child: const GreetingWidget(),
+                    ),
+                    const SizedBox(height: 24),
+                    const CurrentlyPlayingCard(),
+                    const SizedBox(height: 25),
+                    Padding(
+                      padding: EdgeInsets.only(left: 10.r),
+                      child: const SectionHeader(title: "Listened recently"),
+                    ),
+                    const SizedBox(height: 16),
+                    Padding(
+                      padding: EdgeInsets.only(left: 5.r),
+                      child: const BookListItem(
+                        title: 'Swimmer Among the Stars: Stories',
+                        author: 'Kanishk Tharoor',
+                        progress: 0.7,
+                        img: AppsImages.swm,
                       ),
-                      const SizedBox(height: 24),
-                      const CurrentlyPlayingCard(),
-                      const SizedBox(height: 25),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: const SectionHeader(title: "Listened recently"),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 5.r),
+                      child: const BookListItem(
+                        title: 'Detransition, Baby',
+                        author: 'Torrey Peters',
+                        progress: 0.4,
+                        img: AppsImages.swm,
                       ),
-                      const SizedBox(height: 16),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 13),
-                        child: const BookListItem(
-                          title: 'Swimmer Among the Stars: Stories',
-                          author: 'Kanishk Tharoor',
-                          progress: 0.7,
-                          img: AppsImages.swm,
-                        ),
+                    ),
+                    const SizedBox(height: 12),
+                    Padding(
+                      padding: EdgeInsets.only(left: 10.r),
+                      child: const SectionHeader(title: "Favorites"),
+                    ),
+                    const SizedBox(height: 12),
+                    Padding(
+                      padding: EdgeInsets.only(left: 5.r),
+                      child: const BookListItem(
+                        title: 'Leave the World Behind',
+                        author: 'Rumaan Alam',
+                        progress: 0.9,
+                        img: AppsImages.swm,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 13),
-                        child: const BookListItem(
-                          title: 'Detransition, Baby',
-                          author: 'Torrey Peters',
-                          progress: 0.4,
-                          img: AppsImages.swm,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: const SectionHeader(title: "Favorites"),
-                      ),
-                      const SizedBox(height: 12),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 13),
-                        child: const BookListItem(
-                          title: 'Leave the World Behind',
-                          author: 'Rumaan Alam',
-                          progress: 0.9,
-                          img: AppsImages.swm,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 100,
-                      ), // স্ক্রলিং এর জন্য অতিরিক্ত জায়গা
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      height: 100,
+                    ), // স্ক্রলিং এর জন্য অতিরিক্ত জায়গা
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-      bottomNavigationBar: BottomNavBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: onItemTapped,
+      bottomNavigationBar: SafeArea(
+        child: BottomNavBar(
+          selectedIndex: _selectedIndex,
+          onItemTapped: onItemTapped,
+        ),
       ),
     );
   }
@@ -120,9 +120,10 @@ class AppBarWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          width: 40.0,
-          height: 40.0,
+          width: 30.w,
+          height: 30.h,
           decoration: BoxDecoration(
+            boxShadow: [],
             borderRadius: BorderRadius.circular(30),
             image: DecorationImage(
               image: AssetImage(AppsImages.appLogo),
@@ -131,9 +132,9 @@ class AppBarWidget extends StatelessWidget {
           ),
         ),
         IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.notifications_none_outlined,
-            size: 28,
+            size: 20.sp,
             color: Colors.black,
           ),
           onPressed: () {},
@@ -157,7 +158,7 @@ class GreetingWidget extends StatelessWidget {
             Text(
               'Hey,',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w400,
                 color: AppColors.secondaryText,
               ),
@@ -165,21 +166,20 @@ class GreetingWidget extends StatelessWidget {
             Text(
               ' Julia!',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w600,
-                color: AppColors.secondaryText,
+                color: AppColors.primaryColorMS,
               ),
             ),
           ],
         ),
-        SizedBox(height: 4),
+        SizedBox(height: 4.h),
         Text(
           'What will you listen to today?',
           style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
-            color: AppColors.primaryText,
-          ),
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w400,
+              color: AppColors.primaryColorMS),
         ),
       ],
     );
@@ -203,30 +203,38 @@ class CurrentlyPlayingCard extends StatelessWidget {
           children: [
             Container(
               color: AppColors.playGrColor,
-              padding: const EdgeInsets.only(
-                left: 20,
-                top: 18,
-                bottom: 25,
-                right: 20,
+              padding: EdgeInsets.only(
+                left: 15.r,
+                top: 18.r,
+                bottom: 25.r,
+                right: 10.r,
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    width: 70,
-                    height: 72,
+                    width: 60.w,
+                    height: 60.h,
                     decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.playGrColor,
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset: const Offset(10, 10),
+                        ),
+                      ],
                       color: AppColors.playGrColor,
                       borderRadius: BorderRadius.circular(12.0),
-                      image: DecorationImage(
+                      image: const DecorationImage(
                         image: AssetImage(AppsImages.swm),
                         fit: BoxFit.cover,
                       ),
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.pause,
                       color: AppColors.background,
-                      size: 30,
+                      size: 28.sp,
                     ),
                   ),
                   const SizedBox(width: 22),
@@ -234,38 +242,38 @@ class CurrentlyPlayingCard extends StatelessWidget {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Expanded(
+                        Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'A Teaspoon of Earth and Sea',
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 15.sp,
                                   fontWeight: FontWeight.w700,
                                   color: AppColors.primaryText,
                                   fontFamily: 'serif',
                                 ),
                               ),
-                              SizedBox(height: 8),
+                              SizedBox(height: 5.h),
                               Text(
                                 'by Dina Nayeri',
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 12.sp,
                                   color: Color.fromARGB(255, 122, 121, 121),
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        const SizedBox(width: 16),
+                        SizedBox(width: 16.w),
                         Material(
                           color: Colors.transparent,
                           child: InkWell(
                             customBorder: const CircleBorder(),
                             onTap: () {},
-                            child: const Padding(
-                              padding: EdgeInsets.all(4.0),
+                            child: Padding(
+                              padding: EdgeInsets.all(4.r),
                               child: Icon(
                                 Icons.more_horiz,
                                 color: AppColors.iconColor,
@@ -306,8 +314,8 @@ class SectionHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: const TextStyle(
-        fontSize: 18,
+      style: TextStyle(
+        fontSize: 14.sp,
         fontWeight: FontWeight.w600,
         color: AppColors.primaryText,
       ),
@@ -337,9 +345,20 @@ class BookListItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: 70,
-            height: 72,
+          Container(
+            width: 60.w,
+            height: 62.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.1),
+                  spreadRadius: 1,
+                  blurRadius: 10,
+                  offset: const Offset(2, 10),
+                ),
+              ],
+            ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
               child: Image.asset(img, fit: BoxFit.cover),
@@ -351,17 +370,15 @@ class BookListItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                 
                   title,
-                  style:  TextStyle(
-                    fontSize: 18,
-                    
+                  style: TextStyle(
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w700,
                     color: AppColors.primaryText,
                     fontFamily: 'serif',
                   ),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 4.h),
                 Text(
                   author,
                   style: const TextStyle(
@@ -383,11 +400,11 @@ class BookListItem extends StatelessWidget {
               ),
               SizedBox(height: 25),
               SizedBox(
-                width: 24,
-                height: 24,
+                width: 16.w,
+                height: 16.h,
                 child: CircularProgressIndicator(
                   value: progress,
-                  strokeWidth: 3.5,
+                  strokeWidth: 2.5,
                   backgroundColor: AppColors.progressTrack,
                   valueColor: const AlwaysStoppedAnimation<Color>(
                     AppColors.eventBlue,
@@ -416,7 +433,7 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 30, left: 40, right: 38),
+      padding: const EdgeInsets.only(bottom: 20, left: 30, right: 38),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 15.0),
         decoration: BoxDecoration(

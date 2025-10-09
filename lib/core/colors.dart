@@ -7,9 +7,14 @@ class AppColors {
   static const Color textGrey1 = Color(0xFFB7BBC0);
   static const Color secondaryMu = Color.fromARGB(255, 79, 79, 80);
   static const Color whiteGreyMu = Color.fromARGB(255, 224, 229, 243);
+
   //app Project
   static const Color primaryColorAP = Color(0xFF108c67);
   static const Color ubColor = Color(0XFF7e7e7e);
+  //Music screen
+  static const Color primaryColorMS = Color(0xFF313236);
+  static const Color primaryColorMS1 = Color(0xFF476de3);
+  static const Color primaryColorMS2 = Color.fromARGB(255, 48, 47, 47);
   // ==== EXISTING COLORS ====
   static const Color d1CardbgColor = Color.fromARGB(255, 236, 238, 245);
   static const Color background = Color(0xFFF3F4FB);
@@ -84,7 +89,7 @@ class AppColors {
   static const Color navIconInactive = Color(0xFFBDBDBD);
   static const Color orange = Color(0xFFe47a12);
 
-  static const Color iconColor = Color.fromARGB(255, 146, 146, 146);
+  static const Color iconColor = Color.fromARGB(255, 167, 166, 166);
   static const Color progressTrack = Color(0xFFE0E0E0);
   static const Color playGrColor = Color(0xFFf5f6fa);
   static const Color bg = Color(0xFFfdfdfd);
